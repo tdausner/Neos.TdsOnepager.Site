@@ -1,0 +1,19 @@
+prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+
+        className = ${"headline " + props.colors}
+        animation = ${props.animation}
+
+        content = Neos.Fusion:Tag {
+
+            attributes.class = "col-12"
+            content = Neos.Fusion:Tag {
+                tagName = "h1"
+                attributes.class = ${"text-block--" + props.textOrientation}
+                attributes.id = ${"id-" + q(node).property('_identifier')}
+                content = ${props.title}
+            }
+        }
+    }
+}

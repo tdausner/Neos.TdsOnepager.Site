@@ -1,0 +1,29 @@
+prototype(TdsOnepager.Site:Content.ImageTextBlock.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+
+        className = ${"image-text-block " + props.colors}
+        animation = ${props.animation}
+
+        content = Neos.Fusion:Array {
+
+            image = Neos.Fusion:Tag {
+
+                attributes.class = ${"image col-12 col-md-6 order-md-" + (props.imagePosition == "left" ? "0" : "1")}
+                content = TdsOnepager.Site:Resource.Picture.Renderer {
+                    node = ${q(image)}
+                    ratio = 0
+                    mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : 0}
+                    media  = ${[ 1200, 992, 768 ]}
+                    width  = ${[  585, 481, 545 ]}
+                }
+            }
+
+            text = Neos.Fusion:Tag {
+
+                attributes.class = ${"text-block col-12 col-md-6 order-md-" + (props.imagePosition == "right" ? "0" : "1") + " text-block--" + props.textOrientation}
+                content = ${props.text}
+            }
+        }
+    }
+}

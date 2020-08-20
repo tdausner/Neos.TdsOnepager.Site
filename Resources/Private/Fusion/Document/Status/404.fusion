@@ -1,0 +1,1 @@
+prototype(TdsOnepager.Site:Document.Status.404) < prototype(TdsOnepager.Site:Document.Page)

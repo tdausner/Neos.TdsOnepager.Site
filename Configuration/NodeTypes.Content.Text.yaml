@@ -1,0 +1,45 @@
+'TdsOnepager.Site:Content.Text':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.TextColumns': true
+    'TdsOnepager.Site:Mixins.TextOrientation': true
+    'TdsOnepager.Site:Mixins.Animation': true
+    'Neos.NodeTypes.BaseMixins:TitleMixin': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+
+  ui:
+    label: 'Text'
+    icon: align-justify
+    inlineEditable: true
+    group: general
+    position: 50
+
+  properties:
+    text:
+      type: string
+      defaultValue: ''
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            formatting:
+              strong: true
+              em: false
+              sub: false
+              sup: false
+              p: false
+              h1: true
+              h2: true
+              h3: true
+              h4: true
+              pre: false
+              removeFormat: true
+              table: false
+              a: true
+              ol: true
+              ul: true
+              underline: false
+              strikethrough: false
+            autoparagraph: true
+            placeholder: 'Text eingeben...'

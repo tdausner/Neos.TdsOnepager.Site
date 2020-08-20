@@ -1,0 +1,27 @@
+prototype(TdsOnepager.Site:Resource.JsInclude) < prototype(Neos.Fusion:Component) {
+    path = ''
+    src = ''
+    inBackend = true
+
+    @if.showInBackend = ${site.context.inBackend == false || this.inBackend == true}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'script'
+        attributes {
+            src = Neos.Fusion:Case {
+                srcGiven {
+                    condition = ${props.src != ''}
+                    renderer = ${props.src}
+                }
+                pathGiven {
+                    condition = ${props.path != ''}
+                    renderer = Neos.Fusion:ResourceUri {
+                        path = ${props.path}
+                    }
+                }
+            }
+
+            type = 'text/javascript'
+        }
+    }
+}

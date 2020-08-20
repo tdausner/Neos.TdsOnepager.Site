@@ -1,0 +1,20 @@
+prototype(TdsOnepager.Site:Content.Citation) < prototype(Neos.Neos:ContentComponent) {
+
+    text = Neos.Neos:Editable {
+        property = "text"
+    }
+    author = Neos.Neos:Editable {
+        property = "author"
+    }
+    org = Neos.Neos:Editable {
+        property = "org"
+    }
+    colors = ${q(node).property('colors')}
+    citationStyle = ${q(node).property('citationStyle')}
+    icon = ${q(node).property('icon')}
+    sound = ${q(node).property('sound')}
+    animation = ${q(node).property('animation')}
+
+    renderer = TdsOnepager.Site:Content.Citation.Renderer
+
+}

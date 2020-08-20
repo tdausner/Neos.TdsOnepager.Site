@@ -1,0 +1,75 @@
+'TdsOnepager.Site:Content.Citation':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Content.IconAndSound': true
+    'TdsOnepager.Site:Mixins.Animation': true
+
+  ui:
+    label: 'Zitat'
+    icon: quote-right
+    group: 'general'
+    position: 30
+    inlineEditable: true
+
+  properties:
+    text:
+      type: string
+      ui:
+        label: 'Zitat-Text'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            placeholder: 'Geben Sie ein Zitat ein...'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'
+
+    author:
+      type: string
+      ui:
+        label: 'Autor'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            placeholder: 'Autor'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'
+
+    org:
+      type: string
+      ui:
+        label: 'Organisation'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            placeholder: 'Organisation (oder leer)'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'
+
+    citationStyle:
+      type: string
+      defaultValue: 'text-right'
+      ui:
+        label: 'Stil des Zitats'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'text-right':
+                label: 'Autor/Org. links - Text rechts'
+                icon: balance-scale-right
+              'text-left':
+                label: 'Text links - Autor/Org. rechts'
+                icon: balance-scale-left

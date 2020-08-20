@@ -1,0 +1,29 @@
+'TdsOnepager.Site:Content.IconAndSound':
+  abstract: true
+  ui:
+    label: 'Symbol und Sound'
+    icon: bolt
+    group: 'general'
+    inlineEditable: true
+
+  properties:
+    icon:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Symbol (siehe https://fontawesome.com/icons?d=gallery&s=light&m=pro)'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 20
+          editorOptions:
+            placeholder: 'Symbol-Namen eingeben'
+
+    sound:
+      type: Neos\Media\Domain\Model\Asset
+      ui:
+        label: 'Sound'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 30

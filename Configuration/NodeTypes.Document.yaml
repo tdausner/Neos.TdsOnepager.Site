@@ -1,0 +1,4 @@
+'TdsOnepager.Site:Document':
+  abstract: true
+  superTypes:
+    'Neos.Neos:Document': true

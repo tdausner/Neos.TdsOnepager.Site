@@ -1,0 +1,77 @@
+prototype(TdsOnepager.Site:Resource.Picture.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    # render an image from a node having properties:
+    # - image
+    # - title
+    # - alternativeText
+
+    @context.image = ${q(node).property('image')}
+    @context.title = ${q(node).property('title')}
+    @context.altText = ${q(node).property('altText')}
+
+    @context.media = ${this.media}
+    @context.width = ${this.width}
+    ratio = 0
+    @context.ratio = ${this.ratio}
+    mobileRatio = 0
+    @context.mobileRatio = ${this.mobileRatio}
+    # example:
+    # media  = ${[ 1200, 992, 768 ]}    media breakpoints
+    # width  = ${[  730, 610, 450 ]}    image width at breakpiont
+    # ratio = ${3 / 1}
+    # mobileRatio = ${4 / 1}            mobile is the last entry (default: media[] = 768)
+
+    renderer = Neos.Fusion:Tag {
+
+        tagName = "picture"
+        content = Neos.Fusion:Array {
+
+            source = Neos.Fusion:Loop {
+                items = ${Array.range(Array.length(media) - 1, 0, -1)}
+                itemName = 'index'
+                itemRenderer = Neos.Fusion:Case {
+
+                    notLast {
+                        condition = ${!iterator.isLast}
+                        renderer = Neos.Fusion:Tag {
+                            tagName = "source"
+                            attributes.media = ${"(max-width: " + (media[index] - 1) + "px)"}
+                            attributes.srcset = Neos.Neos:ImageUri {
+                                asset = ${image}
+                                width = ${width[index]}
+                                allowCropping = ${true}
+                                allowUpScaling = ${true}
+                                height = ${width[index] / (iterator.isFirst ? mobileRatio : ratio)}
+                                height.@if.nonZero = ${iterator.isFirst && mobileRatio > 0 || !iterator.isFirst && ratio > 0}
+                            }
+                        }
+                    }
+
+                    last {
+                        condition = ${iterator.isLast}
+                        renderer = Neos.Fusion:Tag {
+
+                            tagName = "img"
+                            attributes.src = Neos.Neos:ImageUri {
+
+                                asset = ${image}
+                                width = ${width[index]}
+                                height = ${width[index] / ratio}
+                                height.@if.nonZero = ${ratio > 0}
+                                allowCropping = ${true}
+                                allowUpScaling = ${true}
+                            }
+                            attributes.title = ${props.title}
+                            attributes.title.@if.notEmpty = ${props.title}
+                            attributes.alt = ${props.altText}
+                            attributes.alt.@if.notEmpty = ${props.altText}
+                            attributes.class = "image-responsive"
+
+                            attributes.data-ratio = ${mobileRatio}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+prototype(TdsOnepager.Site:Component.Organism.SiteHeader) < prototype(Neos.Fusion:Component) {
+
+
+    @context.bars = Neos.Fusion:Case {
+        homepage {
+            condition = ${q(node).is('[instanceof TdsOnepager.Site:Document.HomePage]')}
+            renderer = Neos.Fusion:Array {
+
+                bars = '<i class ="fa fa-bars">&nbsp;</i>'
+                menu = Neos.Fusion:Tag {
+
+                    tagName = "ul"
+                    content = Neos.Fusion:Loop {
+
+                        items = ${q(node).find('[instanceof TdsOnepager.Site:Content.Headline]')}
+                        itemName = 'entry'
+                        itemRenderer = Neos.Fusion:Tag {
+
+                            tagName = "li"
+                            content = Neos.Fusion:Tag {
+
+                                tagName = "a"
+                                attributes.href = ${"#id-" + q(entry).property('_identifier')}
+                                content = ${q(entry).property('title')}
+                            }
+                        }
+                    }
+                }
+                #menu.@if.frontend = ${!node.context.inBackend}
+            }
+        }
+        other {
+            condition = true
+            renderer = '<i class="fa fa-angle-double-left" onclick="javascript:location.href=\'/\'"></i>'
+        }
+    }
+
+    renderer = afx`
+        <header>
+            <div class="fixed">
+                <div class="container">
+                    <div class="row flex-row">
+                        <div class="col-11">
+                            <h1>Philipp Loringhoven</h1>
+                            <p>Unabhängig in der verbandsfreien Stadt Boppard</p>
+                        </div>
+                        <div class="menu col-1 d-flex flex-row justify-content-end align-items-center">
+                            {bars}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>&nbsp;</h1>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+    `
+}

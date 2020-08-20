@@ -1,0 +1,8 @@
+'TdsOnepager.Site:Collection.Content.Main':
+  superTypes:
+    'Neos.Neos:ContentCollection': true
+    'TdsOnepager.Site:Constraint.Content.Main': true
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false

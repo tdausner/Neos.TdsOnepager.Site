@@ -1,0 +1,16 @@
+'Neos.NodeTypes.BaseMixins:TitleMixin':
+  abstract: true
+  properties:
+    title:
+      type: string
+      defaultValue: ''
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Kopfzeile eingeben...'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'

@@ -1,0 +1,18 @@
+TdsOnepager.Site:Document.Page:
+  superTypes:
+    'TdsOnepager.Site:Document': true
+
+  ui:
+    icon: file
+    label: Seite
+
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
+      'Neos.Neos:Shortcut': true
+      'TdsOnepager.Site:Document': true
+
+  childNodes:
+    main:
+      type: 'TdsOnepager.Site:Collection.Content.Main'

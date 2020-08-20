@@ -1,0 +1,22 @@
+prototype(TdsOnepager.Site:Content.TextBlock) < prototype(Neos.Neos:ContentComponent) {
+
+    inBackend = ${node.context.inBackend}
+
+    title = Neos.Neos:Editable {
+        property = "title"
+    }
+    author = Neos.Neos:Editable {
+        property = "author"
+    }
+    text = Neos.Neos:Editable {
+        property = "text"
+    }
+
+    colors = ${q(node).property('colors')}
+    textColumns = ${q(node).property('textColumns')}
+    textOrientation = ${q(node).property('textOrientation')}
+    authorPosition = ${q(node).property('authorPosition')}
+    animation = ${q(node).property('animation')}
+
+    renderer = TdsOnepager.Site:Content.TextBlock.Renderer
+}

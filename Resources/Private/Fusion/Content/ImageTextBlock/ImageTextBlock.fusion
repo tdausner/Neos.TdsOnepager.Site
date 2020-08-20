@@ -1,0 +1,13 @@
+prototype(TdsOnepager.Site:Content.ImageTextBlock) < prototype(Neos.Neos:ContentComponent) {
+
+    text = Neos.Neos:Editable {
+        property = "text"
+    }
+    colors = ${q(node).property('colors')}
+    textOrientation = ${q(node).property('textOrientation')}
+    image = ${q(node).property('image')}
+    imagePosition = ${q(node).property('imagePosition')}
+    animation = ${q(node).property('animation')}
+
+    renderer = TdsOnepager.Site:Content.ImageTextBlock.Renderer
+}

@@ -1,0 +1,11 @@
+prototype(TdsOnepager.Site:Content.Headline) < prototype(Neos.Neos:ContentComponent) {
+
+    title = Neos.Neos:Editable {
+        property = 'title'
+    }
+    textOrientation = ${q(node).property('textOrientation')}
+    colors = ${q(node).property('colors')}
+    animation = ${q(node).property('animation')}
+
+    renderer = TdsOnepager.Site:Content.Headline.Renderer
+}

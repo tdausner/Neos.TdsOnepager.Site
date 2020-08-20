@@ -1,0 +1,75 @@
+'TdsOnepager.Site:Mixins.Animation':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        settings:
+          label: 'Animation'
+          icon: icon-video
+  properties:
+    animation:
+      type: 'string'
+      defaultValue: ''
+      ui:
+        label: 'Animation'
+        reloadIfChanged: TRUE
+        inspector:
+          group: preferences
+          position: 100
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'keine'
+              fadeIn:
+                label: 'einblenden'
+              fadeInDown:
+                label: 'einblenden (von oben)'
+              fadeInUp:
+                label: 'einblenden (von unten)'
+              fadeInLeft:
+                label: 'einblenden (von links)'
+              fadeInRight:
+                label: 'einblenden (von rechts)'
+              slideInDown:
+                label: 'reinrutschen (von oben)'
+              slideInUp:
+                label: 'reinrutschen (von unten)'
+              slideInLeft:
+                label: 'reinrutschen (von links)'
+              slideInRight:
+                label: 'reinrutschen (von rechts)'
+              bounceIn:
+                label: 'reinspringen'
+              bounceInDown:
+                label: 'reinspringen (von oben)'
+              bounceInUp:
+                label: 'reinspringen (von unten)'
+              bounceInLeft:
+                label: 'reinspringen (von links)'
+              bounceInRight:
+                label: 'reinspringen (von rechts)'
+              zoomIn:
+                label: 'einzoomen'
+              zoomInDown:
+                label: 'einzoomen (von oben)'
+              zoomInUp:
+                label: 'einzoomen (von unten)'
+              zoomInLeft:
+                label: 'einzoomen (von links)'
+              zoomInRight:
+                label: 'einzoomen (von rechts)'
+              zoomOut:
+                label: 'herauszoomen'
+              zoomOutUp:
+                label: 'rauszoomen (nach oben)'
+              zoomOutDown:
+                label: 'rauszoomen (nach unten)'
+              zoomOutLeft:
+                label: 'rauszoomen (nach links)'
+              zoomOutRight:
+                label: 'rauszoomen (nach rechts)'
+              rollIn:
+                label: 'reinrollen (von links)'
+              rollOut:
+                label: 'rausrollen (nach rechts)'

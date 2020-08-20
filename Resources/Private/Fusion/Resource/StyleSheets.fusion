@@ -1,0 +1,8 @@
+prototype(TdsOnepager.Site:Resource.StyleSheets) < prototype(Neos.Fusion:Array) {
+    main = TdsOnepager.Site:Resource.CssInclude {
+        path = 'resource://TdsOnepager.Site/Public/Styles/main.css'
+    }
+    lib = TdsOnepager.Site:Resource.CssInclude {
+        path = 'resource://TdsOnepager.Site/Public/Styles/lib.css'
+    }
+}

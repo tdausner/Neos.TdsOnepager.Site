@@ -1,0 +1,13 @@
+prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusion:Component)  {
+    renderer = afx`
+        <footer>
+            <div class="container">
+                <div class="row flex-row">
+                    <div class="col-12">
+                        <p><a href="/impressum">Impressum</a> | <a href="/datenschutz">Datenschutz</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    `
+}

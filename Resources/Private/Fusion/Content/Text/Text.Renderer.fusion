@@ -1,0 +1,14 @@
+prototype(TdsOnepager.Site:Content.Text.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+
+        className = ${"text text-block--" + props.textOrientation + " " + props.colors}
+        animation = ${props.animation}
+
+        content = Neos.Fusion:Tag {
+
+            attributes.class = ${"col-12 text-block--" + props.textColumns}
+            content = ${props.text}
+        }
+    }
+}

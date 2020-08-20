@@ -1,0 +1,16 @@
+'Neos.Neos:Content':
+  ui:
+    inspector:
+      groups:
+        image:
+          label: 'Bilder'
+          icon: image
+        sound:
+          label: 'Sounds'
+          icon: file-sound-o
+        preferences:
+          label: 'Einstellungen'
+          icon: cogs
+#        'filter':
+#          label: "Filter-Einstellungen"
+#          icon: "icon-cogs"

@@ -1,0 +1,10 @@
+prototype(TdsOnepager.Site:Resource.BodyScripts) < prototype(Neos.Fusion:Array) {
+
+    jquery = TdsOnepager.Site:Resource.JsInclude {
+        path = 'resource://TdsOnepager.Site/Public/JavaScript/jquery-3.5.1.min.js'
+    }
+
+    main = TdsOnepager.Site:Resource.JsInclude {
+        path = 'resource://TdsOnepager.Site/Public/JavaScript/main.js'
+    }
+}

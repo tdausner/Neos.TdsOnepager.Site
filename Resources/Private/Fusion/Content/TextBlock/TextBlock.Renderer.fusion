@@ -1,0 +1,57 @@
+prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context.sound = Neos.Fusion:Tag {
+        tagName = 'audio'
+        attributes.src = Neos.Fusion:ResourceUri {
+            resource = ${props.sound.resource}
+        }
+
+        @if.notEmpty = ${props.sound}
+    }
+    @context.icon = Neos.Fusion:Tag {
+        tagName = "p"
+        attributes.class = "text-block__icon d-none d-md-flex"
+        content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
+    }
+    icon.@if.notEmpty = ${props.icon}
+
+    @context.nbsp-left = "&nbsp;"
+    @context.nbsp-left.@if.nonRight = ${props.textOrientation != "left"}
+    @context.nbsp-right = "&nbsp;"
+    @context.nbsp-right.@if.nonLeft = ${props.textOrientation != "right"}
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+
+        className = ${"text-block text-block--" + props.textOrientation + " text-block__author--" + props.authorPosition + " " + props.colors}
+        animation = ${props.animation}
+
+        content = Neos.Fusion:Array {
+
+            title = afx`
+                <div class="col-12">
+                    <h2>{props.title}</h2>
+                </div>
+            `
+            title.@if.notEmpty = ${props.title || props.inBackend}
+
+            authorTop = afx`
+                <div class="author col-12">
+                    <h4>{nbsp-left}{props.author}{nbsp-right}</h4>
+                </div>
+            `
+            authorTop.@if.notEmpty = ${(props.author || props.inBackend) && props.authorPosition == "top"}
+
+            text = Neos.Fusion:Tag {
+                attributes.class = ${"col-12 text-block--" + props.textColumns}
+                content = ${props.text}
+            }
+
+            authorBottom = afx`
+                <div class="author col-12">
+                    <h4>{nbsp-left}{props.author}{nbsp-right}</h4>
+                </div>
+            `
+            authorBottom.@if.notEmptyAndBottom = ${(props.author || props.inBackend) && props.authorPosition == 'bottom'}
+        }
+    }
+}

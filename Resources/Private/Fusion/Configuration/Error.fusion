@@ -1,0 +1,17 @@
+error {
+    @context.notFoundDocument =${q(site).find('[instanceof TdsOnepager.Site:Document.Status.404]').get(0)}
+    4xx {
+        condition = true
+        condition.@process {
+            statusMatches = ${statusCode >= 400 && statusCode < 500}
+            onlyRenderWhenInLiveWorkspace = ${value && documentNode.context.workspace.name == 'live'}
+        }
+
+        renderer = Neos.Fusion:Renderer {
+            @context.node = ${notFoundDocument}
+            @context.documentNode = ${notFoundDocument}
+            renderPath = '/root'
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+prototype(TdsOnepager.Site:Resource.Section.Renderer) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion:Tag {
+
+        tagName = "section"
+        attributes.class = ${props.className}
+        content = Neos.Fusion:Tag {
+
+            attributes.class = "container"
+            content = Neos.Fusion:Case {
+
+                animated {
+                    condition = ${props.animation ? 1 : 0}
+                    renderer = Neos.Fusion:Tag {
+
+                        attributes.class = ${"row animate animate__animated animate__" + props.animation}
+                        attributes.data-animation = ${props.animation}
+                        content = ${props.content}
+                    }
+                }
+
+                notAnimated {
+                    condition = true
+                    renderer = Neos.Fusion:Tag {
+
+                        attributes.class = "row"
+                        content = ${props.content}
+                    }
+                }
+            }
+        }
+    }
+}

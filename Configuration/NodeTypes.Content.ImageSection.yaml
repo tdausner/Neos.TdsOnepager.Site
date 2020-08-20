@@ -1,0 +1,38 @@
+'TdsOnepager.Site:Content.ImageSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.Animation': true
+
+  ui:
+    label: 'Bild quer'
+    icon: image
+    group: 'general'
+    position: 10
+
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild quer'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          position: 50
+
+    width:
+      type: string
+      defaultValue: 'full'
+      ui:
+        label: Bild-Breite
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              full:
+                label: 'Volle Breite'
+                icon: arrows-h
+              grid:
+                label: 'Im Grid'
+                icon: square-o

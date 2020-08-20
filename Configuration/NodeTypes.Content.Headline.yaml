@@ -1,0 +1,14 @@
+'TdsOnepager.Site:Content.Headline':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.NodeTypes.BaseMixins:TitleMixin': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.TextOrientation': true
+    'TdsOnepager.Site:Mixins.Animation': true
+
+  ui:
+    label: 'Abschnitt'
+    icon: header
+    inlineEditable: true
+    group: general
+    position: 60

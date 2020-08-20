@@ -1,0 +1,34 @@
+'Neos.NodeTypes.BaseMixins:TextMixin':
+  abstract: true
+  properties:
+    text:
+      type: string
+      defaultValue: ''
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            formatting:
+              strong: true
+              em: false
+              sub: false
+              sup: false
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              removeFormat: false
+              table: false
+              a: true
+              ol: true
+              ul: true
+              underline: false
+              strikethrough: false
+            autoparagraph: true
+            placeholder: 'Text eingeben...'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'

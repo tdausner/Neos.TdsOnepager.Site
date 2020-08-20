@@ -1,0 +1,16 @@
+'TdsOnepager.Site:Mixins.Text':
+  abstract: true
+  properties:
+    title:
+      type: string
+      defaultValue: 'Titel'
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Titel eingeben...'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'

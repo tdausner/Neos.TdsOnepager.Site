@@ -1,0 +1,20 @@
+'TdsOnepager.Site:Mixins.ImageOrientation':
+  abstract: true
+  properties:
+    imagePosition:
+      type: string
+      defaultValue: 'left'
+      ui:
+        label: 'Bild-Position'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              right:
+                label: 'Bild rechts'
+                icon: chevron-right
+              left:
+                label: 'Bild links'
+                icon: chevron-left

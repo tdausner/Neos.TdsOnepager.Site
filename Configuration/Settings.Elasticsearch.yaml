@@ -1,0 +1,71 @@
+Neos:
+  ContentRepository:
+    Search:
+      indexAllWorkspaces: false
+      elasticSearch:
+        indexName: '%env:ELASTICSEARCH_INDEX%'
+
+Flowpack:
+  ElasticSearch:
+    indexes:
+      default:
+        cgm:
+          settings:
+            index:
+              number_of_shards: 1
+              number_of_replicas: 0
+              max_result_window: 50000
+            analysis:
+              filter:
+                german_stop:
+                  type: stop
+                  stopwords: _german_
+                german_stemmer:
+                  type: stemmer
+                  language: light_german
+              analyzer:
+                default:
+                  tokenizer: 'standard'
+                  filter: ['lowercase', 'german_stop', 'german_normalization', 'german_stemmer']
+
+    realtimeIndexing:
+      enabled: true
+
+    ContentRepositoryAdaptor:
+      driver:
+        mapping:
+          6.x:
+            query:
+              arguments:
+                request:
+                  query:
+                    bool:
+                      should: []
+                queryStringParameters:
+                  fields:
+                    - neos_fulltext.h1^1
+                    - neos_fulltext.h2^1
+                    - neos_fulltext.h3^1
+                    - neos_fulltext.h4^1
+                    - neos_fulltext.h5^1
+                    - neos_fulltext.h6^1
+                    - neos_fulltext.text^1
+
+    ContentRepositoryQueueIndexer:
+      enableLiveAsyncIndexing: true
+      batchSize: 3000
+      acceptedFailedJobs: 0
+
+  JobQueue:
+    Common:
+      presets:
+        'Flowpack.ElasticSearch.ContentRepositoryQueueIndexer':
+          className: 'Flowpack\JobQueue\Doctrine\Queue\DoctrineQueue'
+          executeIsolated: true
+          options:
+            tableName: 'flowpack_jobqueue_messages_ContentRepositoryQueueIndexer'
+        'Flowpack.ElasticSearch.ContentRepositoryQueueIndexer.Live':
+          className: 'Flowpack\JobQueue\Doctrine\Queue\DoctrineQueue'
+          executeIsolated: true
+          options:
+            tableName: 'flowpack_jobqueue_messages_ContentRepositoryQueueIndexer_Live'

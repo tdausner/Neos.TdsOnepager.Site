@@ -1,0 +1,28 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        TdsOnepager.Site: true
+    userInterface:
+      translation:
+        autoInclude:
+          'TdsOnepager.Site': ['NodeTypes/*']
+      navigateComponent:
+        nodeTree:
+          loadingDepth: 1
+    nodeTypes:
+      groups:
+        system:
+          position: end
+          label: System
+          collapsed: true
+
+
+#  Media:
+#    assetSources:
+#      pexels:
+#        assetSourceOptions:
+#          accessKey: 563492ad6f91700001000001b9eaa7f7df5b496ab50231665d784b13
+#          copyRightNoticeTemplate: '${"Pexels.com / " + user.name}'
+#          defaultSearchTerm: 'medical'
+#          proxyUrl: '%env:HTTP_PROXY%'

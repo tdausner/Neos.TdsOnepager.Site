@@ -1,0 +1,51 @@
+#
+# image with text-block
+#
+'TdsOnepager.Site:Content.ImageTextBlock':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.TextOrientation': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.ImageOrientation': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+    'TdsOnepager.Site:Mixins.Animation': true
+
+  ui:
+    label: 'Text-Box mit Bild'
+    icon: file-image-o
+    group: general
+    position: 20
+    inlineEditable: true
+
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 1
+
+    text:
+      ui:
+        inline:
+          editorOptions:
+            formatting:
+              strong: true
+              em: false
+              sub: false
+              sup: false
+              p: false
+              h1: false
+              h2: false
+              h3: true
+              h4: true
+              pre: false
+              removeFormat: true
+              table: false
+              a: true
+              ol: true
+              ul: true
+              underline: false
+              strikethrough: false

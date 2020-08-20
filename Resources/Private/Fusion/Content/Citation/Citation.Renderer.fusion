@@ -1,0 +1,67 @@
+prototype(TdsOnepager.Site:Content.Citation.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+
+    @context.sound = Neos.Fusion:Tag {
+        tagName = 'audio'
+        attributes.src = Neos.Fusion:ResourceUri {
+            resource = ${props.sound.resource}
+        }
+
+        @if.notEmpty = ${props.sound}
+    }
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+
+        className = ${"citation citation--" + props.citationStyle + " " + props.colors}
+        animation = ${props.animation}
+
+        content = Neos.Fusion:Array {
+
+            author-n-org = Neos.Fusion:Tag {
+
+                attributes.class = "col-md-3 col-sm-12"
+                content = Neos.Fusion:Array {
+
+                    icon = Neos.Fusion:Tag {
+                        tagName = "p"
+                        attributes.class = "citation__icon d-none d-md-flex"
+                        content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
+                    }
+                    icon.@if.notEmpty = ${props.icon}
+
+                    author = Neos.Fusion:Tag {
+                        tagName = "p"
+                        attributes.class = "citation__author"
+                        content = ${props.author}
+                    }
+
+                    org = Neos.Fusion:Tag {
+                        tagName = "p"
+                        attributes.class = "citation__org"
+                        content = ${props.org}
+                    }
+                    org.@if.notEmpty = ${props.org}
+
+                }
+            }
+            citation = Neos.Fusion:Tag {
+
+                attributes.class = "col-md-8 col-sm-12"
+                content = Neos.Fusion:Array {
+
+                    text = Neos.Fusion:Tag {
+                        tagName = "h2"
+                        content = ${props.text}
+                    }
+
+                    icon = Neos.Fusion:Tag {
+                        tagName = "p"
+                        attributes.class = "citation__icon d-md-none"
+                        content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
+                    }
+                    icon.@if.notEmpty = ${props.icon}
+                }
+            }
+        }
+    }
+}

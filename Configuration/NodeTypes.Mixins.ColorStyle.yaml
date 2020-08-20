@@ -1,0 +1,23 @@
+'TdsOnepager.Site:Mixins.ColorStyle':
+  abstract: true
+  properties:
+    colors:
+      type: string
+      defaultValue: 'cc-black-on-white'
+      ui:
+        label: 'Farbgebung'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 1
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'cc-white-on-blue':
+                label: 'weiß auf blauem Hintergrund'
+              'cc-white-on-lightblue':
+                label: 'weiß auf hellblauem Hintergrund'
+              'cc-white-on-green':
+                label: 'weiß auf grünem Hintergrund'
+              'cc-black-on-white':
+                label: 'schwarz auf weißem Hintergrund'

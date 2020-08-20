@@ -1,0 +1,55 @@
+'TdsOnepager.Site:Content.TextBlock':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.TextColumns': true
+    'TdsOnepager.Site:Mixins.TextOrientation': true
+    'TdsOnepager.Site:Mixins.Animation': true
+    'Neos.NodeTypes.BaseMixins:TitleMixin': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+
+  ui:
+    label: 'Text-Block'
+    icon: file-text-o
+    inlineEditable: true
+    group: general
+    position: 40
+
+  properties:
+    title:
+      ui:
+        inline:
+          editorOptions:
+            placeholder: 'Titel eingeben (leer lassen => wird nicht angezeigt).'
+
+    author:
+      type: string
+      ui:
+        label: 'Author'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            placeholder: 'Author (leer lassen => wird nicht angezeigt)'
+      search:
+        elasticSearchMapping:
+          type: string
+        indexing: '${value}'
+        fulltextExtractor: '${Indexing.extractHtmlTags(value)}'
+
+    authorPosition:
+      type: string
+      defaultValue: 'top'
+      ui:
+        label: 'Position Author'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              top:
+                label: oben
+                icon: cloud-upload
+              bottom:
+                label: unten
+                icon: cloud-download

@@ -1,0 +1,20 @@
+'TdsOnepager.Site:Mixins.TextColumns':
+  abstract: true
+  properties:
+    textColumns:
+      type: 'string'
+      defaultValue: 'single-col'
+      ui:
+        label: Text-Spalten
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              single-col:
+                label: einfach
+                icon: square-o
+              two-cols:
+                label: zweifach
+                icon: columns

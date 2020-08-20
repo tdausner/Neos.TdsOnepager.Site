@@ -1,0 +1,10 @@
+'TdsOnepager.Site:Document.HomePage':
+  superTypes:
+    'TdsOnepager.Site:Document.Page': true
+  ui:
+    icon: globe
+    label: Homepage
+  constraints:
+    nodeTypes:
+      '*': false
+      'TdsOnepager.Site:Document.HomePage': false
