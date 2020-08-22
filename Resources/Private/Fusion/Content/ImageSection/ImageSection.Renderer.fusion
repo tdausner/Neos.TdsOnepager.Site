@@ -12,7 +12,7 @@ prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusio
             renderer = Neos.Fusion:Tag {
 
                 tagName = "section"
-                attributes.class = "imageSection"
+                attributes.class = ${"imageSection " + props.colors}
                 content = Neos.Fusion:Tag {
 
                     attributes.class = "container"

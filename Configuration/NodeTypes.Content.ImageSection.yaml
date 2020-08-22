@@ -1,6 +1,7 @@
 'TdsOnepager.Site:Content.ImageSection':
   superTypes:
     'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
     'TdsOnepager.Site:Mixins.Animation': true
 
   ui:

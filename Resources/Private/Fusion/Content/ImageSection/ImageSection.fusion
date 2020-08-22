@@ -2,6 +2,7 @@ prototype(TdsOnepager.Site:Content.ImageSection) < prototype(Neos.Neos:ContentCo
 
     #    inFrontend = ${!node.context.inBackend}
 
+    colors = ${q(node).property('colors')}
     imgWidth = ${q(node).property('width')}
     animation = ${q(node).property('animation')}
 
