@@ -17,6 +17,20 @@ Neos:
           label: System
           collapsed: true
 
+  ContentRepository:
+    contentDimensions:
+      language:
+        label: 'Language'
+        icon: icon-language
+        default: de
+        defaultPreset: de
+        presets:
+          de:
+            label: German
+            values:
+              - de
+            uriSegment: de
+
 #  Media:
 #    assetSources:
 #      pexels:
