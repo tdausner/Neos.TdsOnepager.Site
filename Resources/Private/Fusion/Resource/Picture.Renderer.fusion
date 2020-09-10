@@ -65,7 +65,7 @@ prototype(TdsOnepager.Site:Resource.Picture.Renderer) < prototype(Neos.Fusion:Re
                             attributes.title.@if.notEmpty = ${props.title}
                             attributes.alt = ${props.altText}
                             attributes.alt.@if.notEmpty = ${props.altText}
-                            attributes.class = "image-responsive"
+                            attributes.class = ${"image-responsive " + props.imageScaling}
 
                             attributes.data-ratio = ${mobileRatio}
                         }

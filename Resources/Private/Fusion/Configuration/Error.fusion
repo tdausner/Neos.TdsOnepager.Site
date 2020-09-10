@@ -1,5 +1,5 @@
 error {
-    @context.notFoundDocument =${q(site).find('[instanceof TdsOnepager.Site:Document.Status.404]').get(0)}
+    @context.notFoundDocument = ${q(site).find('[instanceof TdsOnepager.Site:Document.Status.404]').get(0)}
     4xx {
         condition = true
         condition.@process {

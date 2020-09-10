@@ -1,9 +1,8 @@
 prototype(TdsOnepager.Site:Component.Template.Page) < prototype(Neos.Fusion:Component) {
 
-    #@context.header = ${q(site).find('[instanceof TdsOnepager.Site:Component.Organism.SiteHeader]').children('main').children().get(0)}
-
     renderer = afx`
         <TdsOnepager.Site:Component.Organism.SiteHeader/>
+        <TdsOnepager.Site:Component.Organism.Cta/>
         <main class={styles.page}>
             {props.content}
         </main>

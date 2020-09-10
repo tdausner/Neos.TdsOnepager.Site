@@ -7,7 +7,7 @@
     group: system
   properties:
     title:
-      defaultValue: '404'
+      defaultValue: 'Seite nicht gefunden'
     uriPathSegment:
       ui:
         inspector:

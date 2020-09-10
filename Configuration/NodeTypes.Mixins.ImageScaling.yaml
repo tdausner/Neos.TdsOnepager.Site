@@ -1,0 +1,20 @@
+'TdsOnepager.Site:Mixins.ImageScaling':
+  abstract: true
+  properties:
+    imageScaling:
+      type: string
+      defaultValue: 'left'
+      ui:
+        label: 'Skalierung des Bildes'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Skalierung aus'
+                icon: dot-circle
+              image--autoscale:
+                label: 'Skalierung an'
+                icon: expand-arrows-alt

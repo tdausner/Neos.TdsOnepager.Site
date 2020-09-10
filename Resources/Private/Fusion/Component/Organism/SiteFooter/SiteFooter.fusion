@@ -1,13 +1,21 @@
 prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusion:Component)  {
+
+    @context.impressum = Neos.Neos:NodeUri {
+        node = '/sites/site/node-cs18ujdfw93ld'
+    }
+    @context.datenschutz = Neos.Neos:NodeUri {
+        node = '/sites/site/node-xmpla1w6x22lr'
+    }
     renderer = afx`
         <footer>
-            <div class="container">
+            <div id="bottom" class="container">
                 <div class="row flex-row">
                     <div class="col-12">
-                        <p><a href="/impressum">Impressum</a> | <a href="/datenschutz">Datenschutz</a></p>
+                        <p><a href={impressum}>Impressum</a> | <a href={datenschutz}>Datenschutz</a></p>
                     </div>
                 </div>
             </div>
         </footer>
+        {info}
     `
 }

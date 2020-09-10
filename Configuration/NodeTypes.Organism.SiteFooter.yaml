@@ -1,0 +1,19 @@
+'TdsOnepager.Site:Component.Organism.SiteFooter':
+  superTypes:
+    'Neos.Neos:Content': TRUE
+  ui:
+    label: 'Footer'
+    icon: 'icon-square'
+    group: 'structure'
+    inlineEditable: TRUE
+  properties:
+    links:
+      type: references
+      ui:
+        label: 'Links Fußzeile'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'additional'
+          position: 12
+          editorOptions:
+            nodeTypes: ['Neos.NodeTypes:Page']

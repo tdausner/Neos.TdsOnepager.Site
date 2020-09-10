@@ -7,6 +7,7 @@
     'TdsOnepager.Site:Mixins.TextOrientation': true
     'TdsOnepager.Site:Mixins.ColorStyle': true
     'TdsOnepager.Site:Mixins.ImageOrientation': true
+    'TdsOnepager.Site:Mixins.ImageScaling': true
     'Neos.NodeTypes.BaseMixins:TextMixin': true
     'TdsOnepager.Site:Mixins.Animation': true
 

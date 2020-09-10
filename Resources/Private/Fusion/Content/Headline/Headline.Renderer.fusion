@@ -2,6 +2,7 @@ prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Re
 
     renderer = TdsOnepager.Site:Resource.Section.Renderer {
 
+        noID = true
         className = ${"headline " + props.colors}
         animation = ${props.animation}
 
@@ -11,7 +12,7 @@ prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Re
             content = Neos.Fusion:Tag {
                 tagName = "h1"
                 attributes.class = ${"text-block--" + props.textOrientation}
-                attributes.id = ${"id-" + q(node).property('_identifier')}
+                attributes.id = ${q(node).property('_identifier')}
                 content = ${props.title}
             }
         }

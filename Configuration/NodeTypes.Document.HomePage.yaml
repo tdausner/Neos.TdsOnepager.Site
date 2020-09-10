@@ -8,3 +8,4 @@
     nodeTypes:
       '*': false
       'TdsOnepager.Site:Document.HomePage': false
+      'TdsOnepager.Site:Document.Status.404': true

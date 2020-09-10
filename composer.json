@@ -1,13 +1,13 @@
 {
     "description": "",
-    "type": "neos-package",
+    "type": "neos-site",
     "name": "tdsonepager/site",
     "require": {
         "neos/flow": "*"
     },
     "autoload": {
         "psr-4": {
-            "TdsOnepager\\Site\\": "Classes/"
+            "TdsOnepager\\Site\\": "Classes"
         }
     },
     "extra": {

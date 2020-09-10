@@ -1,4 +1,5 @@
 prototype(TdsOnepager.Site:Resource.FontInclude) < prototype(Neos.Fusion:Component) {
+
     path = ''
     inBackend = true
 

@@ -15,8 +15,8 @@
             values:
               'cc-white-on-blue':
                 label: 'weiß auf blauem Hintergrund'
-              'cc-white-on-lightblue':
-                label: 'weiß auf hellblauem Hintergrund'
+              'cc-blue-on-lightblue':
+                label: 'blau auf hellblauem Hintergrund'
               'cc-white-on-green':
                 label: 'weiß auf grünem Hintergrund'
               'cc-black-on-white':

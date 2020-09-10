@@ -3,7 +3,7 @@ prototype(TdsOnepager.Site:Content.Text) < prototype(Neos.Neos:ContentComponent)
     text = Neos.Neos:Editable {
         property = 'text'
     }
-
+    colors = ${q(node).property('colors')}
     textColumns = ${q(node).property('textColumns')}
     textOrientation = ${q(node).property('textOrientation')}
     animation = ${q(node).property('animation')}

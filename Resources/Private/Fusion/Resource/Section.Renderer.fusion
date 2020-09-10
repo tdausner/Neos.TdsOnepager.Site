@@ -3,6 +3,8 @@ prototype(TdsOnepager.Site:Resource.Section.Renderer) < prototype(Neos.Fusion:Co
     renderer = Neos.Fusion:Tag {
 
         tagName = "section"
+        attributes.id = ${q(node).property('_identifier')}
+        attributes.id.@if.doID = ${!props.noID}
         attributes.class = ${props.className}
         content = Neos.Fusion:Tag {
 

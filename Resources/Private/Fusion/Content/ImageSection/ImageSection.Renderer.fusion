@@ -1,50 +1,25 @@
 prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusion:Renderer) {
 
+    @context.id = ${q(node).property('_identifier')}
     @context.picture = afx`
         <div class="col-12">
             {props.picture}
         </div>
     `
-
     renderer = Neos.Fusion:Case {
         grid {
             condition = ${props.imgWidth == 'grid'}
-            renderer = Neos.Fusion:Tag {
+            renderer = TdsOnepager.Site:Resource.Section.Renderer {
 
-                tagName = "section"
-                attributes.class = ${"imageSection " + props.colors}
-                content = Neos.Fusion:Tag {
-
-                    attributes.class = "container"
-
-                    content = Neos.Fusion:Case {
-
-                        animated {
-                            condition = ${props.animation ? 1 : 0}
-                            renderer = Neos.Fusion:Tag {
-
-                                attributes.class = ${"row animate animate__animated animate__" + props.animation}
-                                attributes.data-animation = ${props.animation}
-                                content = ${picture}
-                            }
-                        }
-
-                        notAnimated {
-                            condition = true
-                            renderer = Neos.Fusion:Tag {
-
-                                attributes.class = "row"
-                                content = ${picture}
-                            }
-                        }
-                    }
-                }
+                className = ${"imageSection " + props.colors}
+                animation = ${props.animation}
+                content = ${props.picture}
             }
         }
         full {
             condition = true
             renderer = afx`
-                <section class="imageSection">
+                <section id={id} class="imageSection">
                     {props.picture}
                 </section>
             `
