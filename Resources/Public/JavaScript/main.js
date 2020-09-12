@@ -12,7 +12,8 @@
             let myId = $( this ).attr( 'id' );
             if ( myId === id )
             {
-                scroller( $( '[id=' + id + ']' ) );
+                win.location.href = '#' + id;
+//                scroller( $( '[id=' + id + ']' ) );
                 return false;
             }
         } );
@@ -25,6 +26,7 @@
     const scroller = function ( $target ) {
         let newTop = $target[0].offsetTop - headerHeight;
         $( 'html,body' ).animate( { scrollTop: newTop }, 700, 'linear' );
+        
         /* use jQuery animate() due to no 'behaviour' option in Safari
                 window.scrollTo( {
                     top: newTop,
@@ -132,7 +134,7 @@
         {
             for ( let i in headlines )
             {
-                if ( headlines[i].y > headerHeight + win.innerHeight / 2 )
+                if ( headlines.hasOwnProperty(i) && headlines[i].y > headerHeight + win.innerHeight / 2 )
                 {
                     scroller( [headlines[i].el] );
                     break;

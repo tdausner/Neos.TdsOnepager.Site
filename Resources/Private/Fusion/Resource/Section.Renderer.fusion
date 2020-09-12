@@ -1,32 +1,45 @@
 prototype(TdsOnepager.Site:Resource.Section.Renderer) < prototype(Neos.Fusion:Component) {
 
+    @context.id = ${q(node).property('_identifier')}
+    @context.permalink = ${q(documentNode).property('uriPathSegment') + '?id=' + id}
+
     renderer = Neos.Fusion:Tag {
 
         tagName = "section"
-        attributes.id = ${q(node).property('_identifier')}
-        attributes.id.@if.doID = ${!props.noID}
+        attributes.id = ${id}
+        attributes.id.@if.doIt = ${!props.noID}
         attributes.class = ${props.className}
-        content = Neos.Fusion:Tag {
+        content = Neos.Fusion:Array {
+            permlink = Neos.Fusion:Tag {
+                content = afx`
+                    <div class="perm-link">
+                        <a href={permalink}><i class="fa fa-link"></i></a>
+                    </div>
+                `
+            }
+            permlink.@if.doIt = ${!props.noID}
+            container = Neos.Fusion:Tag {
 
-            attributes.class = "container"
-            content = Neos.Fusion:Case {
+                attributes.class = "x container"
+                content = Neos.Fusion:Case {
 
-                animated {
-                    condition = ${props.animation ? 1 : 0}
-                    renderer = Neos.Fusion:Tag {
+                    animated {
+                        condition = ${props.animation ? 1 : 0}
+                        renderer = Neos.Fusion:Tag {
 
-                        attributes.class = ${"row animate animate__animated animate__" + props.animation}
-                        attributes.data-animation = ${props.animation}
-                        content = ${props.content}
+                            attributes.class = ${"row animate animate__animated animate__" + props.animation}
+                            attributes.data-animation = ${props.animation}
+                            content = ${props.content}
+                        }
                     }
-                }
 
-                notAnimated {
-                    condition = true
-                    renderer = Neos.Fusion:Tag {
+                    notAnimated {
+                        condition = true
+                        renderer = Neos.Fusion:Tag {
 
-                        attributes.class = "row"
-                        content = ${props.content}
+                            attributes.class = "row"
+                            content = ${props.content}
+                        }
                     }
                 }
             }

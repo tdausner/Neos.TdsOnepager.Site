@@ -1,18 +1,10 @@
 {
     "description": "",
     "type": "neos-site",
-    "name": "tdsonepager/site",
+    "name": "tdsonepager.site",
     "require": {
         "neos/flow": "*",
-        "neos/neos": "^5.0 || dev-master",
-        "neos/fusion-afx": "*",
-        "neos/nodetypes-basemixins": "*",
-        "neos/nodetypes-assetlist": "*",
-        "neos/nodetypes-contentreferences": "*",
-        "neos/nodetypes-form": "*",
-        "neos/nodetypes-html": "*",
-        "neos/nodetypes-navigation": "*",
-        "flowpack/neos-frontendlogin": "^4.0"
+        "neos/nodetypes": "*"
     },
     "autoload": {
         "psr-4": {
