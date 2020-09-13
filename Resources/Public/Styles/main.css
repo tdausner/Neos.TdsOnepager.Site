@@ -370,13 +370,18 @@ footer {
   padding-bottom: 0.75em;
 }
 
-footer .flex-column p {
-  text-align: right;
+footer .row > div {
+  display: flex;
+  justify-content: space-between;
 }
 
 footer p, footer a {
   color: var(--cc-bgw-lightblue);
   text-decoration: none;
+}
+
+footer a {
+  margin-left: 1em;
 }
 
 footer a:hover {

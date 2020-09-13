@@ -1,4 +1,4 @@
-prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusion:Component)  {
+prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusion:Component) {
 
     @context.impressum = Neos.Neos:NodeUri {
         node = '/sites/site/node-cs18ujdfw93ld'
@@ -9,9 +9,19 @@ prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusio
     renderer = afx`
         <footer>
             <div id="bottom" class="container">
-                <div class="row flex-row">
+                <div class="row">
                     <div class="col-12">
-                        <p><a href={impressum}>Impressum</a> | <a href={datenschutz}>Datenschutz</a></p>
+                        <p>
+                            <a href={impressum}>Impressum</a> | <a href={datenschutz}>Datenschutz</a>
+                        </p>
+                        <p>
+                            <a href="tel:+4917677610510">
+                                <i class="fa fa-phone"></i>
+                            </a>
+                            <a href="mailto:philipp@plboppard.de?subject=Frage%20an%20den%20Buergermeisterkandidaten%20Philipp%20Loringhoven">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
