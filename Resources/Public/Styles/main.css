@@ -336,6 +336,33 @@ section p {
 }
 
 /**
+ * permanent link
+ */
+.perm-link {
+  position: absolute;
+  margin-top: -1em;
+  margin-left: -.7em;
+  z-index: 1;
+}
+
+.perm-link a {
+  color: var(--cc-bgw-blue);
+}
+
+.cc-white-on-blue .perm-link a {
+  color: var(--cc-bgw-lightblue);
+}
+
+.perm-link a:hover {
+  color: var(--cc-bgw-yellow);
+}
+
+.text .perm-link,
+.text-block .perm-link {
+  margin-top: 1em;
+}
+
+/**
  * footer
  */
 footer {
@@ -665,6 +692,7 @@ section.imageSection picture {
     padding-top: 0;
   }
 }
+
 /**
  * Tds.Site:Content.Headline
  */

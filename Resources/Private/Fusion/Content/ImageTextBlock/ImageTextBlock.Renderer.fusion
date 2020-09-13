@@ -1,6 +1,6 @@
 prototype(TdsOnepager.Site:Content.ImageTextBlock.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+    renderer = TdsOnepager.Site:Resource.Section {
 
         className = ${"image-text-block " + props.colors}
         animation = ${props.animation}

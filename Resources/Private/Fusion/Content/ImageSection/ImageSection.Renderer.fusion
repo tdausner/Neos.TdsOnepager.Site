@@ -6,10 +6,13 @@ prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusio
             {props.picture}
         </div>
     `
+
     renderer = Neos.Fusion:Case {
         grid {
             condition = ${props.imgWidth == 'grid'}
-            renderer = TdsOnepager.Site:Resource.Section.Renderer {
+            renderer = TdsOnepager.Site:Resource.Section {
+
+                noLink = true
 
                 className = ${"imageSection " + props.colors}
                 animation = ${props.animation}

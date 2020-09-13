@@ -25,6 +25,7 @@ prototype(TdsOnepager.Site:Component.Organism.SiteHeader) < prototype(Neos.Fusio
                                 content = ${q(entry).property('title')}
                             }
                         }
+                        itemRenderer.@if.hasTitle = ${q(entry).property('title') != ''}
                     }
                 }
                 #menu.@if.frontend = ${!node.context.inBackend}

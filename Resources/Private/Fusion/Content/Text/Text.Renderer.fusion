@@ -1,6 +1,6 @@
 prototype(TdsOnepager.Site:Content.Text.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+    renderer = TdsOnepager.Site:Resource.Section {
 
         className = ${"text text-block--" + props.textOrientation + " " + props.colors}
         animation = ${props.animation}

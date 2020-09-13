@@ -1,6 +1,7 @@
 ;( function ( $, win ) {
     'use strict';
 
+    let site = win.location.origin + win.location.pathname;
 
     let headerHeight = 0;
     $( document ).ready( function () {
@@ -12,8 +13,12 @@
             let myId = $( this ).attr( 'id' );
             if ( myId === id )
             {
-                win.location.href = '#' + id;
-//                scroller( $( '[id=' + id + ']' ) );
+                if ( navigator.userAgent.match( /(facebookexternalhit|LinkedInBot|Xing Agent)/i ) !== null )
+                {
+                    window.scrollTo(0, this.offsetTop );
+                    return false;
+                }
+                scroller( $( '[id=' + id + ']' ) );
                 return false;
             }
         } );
@@ -26,14 +31,14 @@
     const scroller = function ( $target ) {
         let newTop = $target[0].offsetTop - headerHeight;
         $( 'html,body' ).animate( { scrollTop: newTop }, 700, 'linear' );
-        
-        /* use jQuery animate() due to no 'behaviour' option in Safari
-                window.scrollTo( {
-                    top: newTop,
-                    left: 0,
-                    behavior: 'smooth'
-                } );
-        */
+
+/* use jQuery animate() due to no 'behaviour' option in Safari
+        window.scrollTo( {
+            top: newTop,
+            left: 0,
+            behavior: 'smooth'
+        } );
+*/
     };
 
     /**
@@ -82,19 +87,19 @@
         /*
          * animation
          */
-        let $elements = $( '.animate' ).parent();
+        let $elements = $( '.animate' ).parent(); // containers
         $elements.each( function () {
             let rect = this.getBoundingClientRect();
             let vh = window.innerHeight;
-            let $row = $( this ).find( '.row' );
-            let animation = "animate__animated animate__" + $row.data( 'animation' );
+            let $anim = $( this.childNodes[0] );
+            let animation = "animate__animated animate__" + $anim.data( 'animation' );
             if ( rect.top > headerHeight && rect.top < vh || rect.bottom > headerHeight && rect.top < vh )
             {
-                $row.addClass( animation );
+                $anim.addClass( animation );
             }
             else
             {
-                $row.removeClass( animation );
+                $anim.removeClass( animation );
             }
         } );
         setArrow();
@@ -134,7 +139,7 @@
         {
             for ( let i in headlines )
             {
-                if ( headlines.hasOwnProperty(i) && headlines[i].y > headerHeight + win.innerHeight / 2 )
+                if ( headlines.hasOwnProperty( i ) && headlines[i].y > headerHeight + win.innerHeight / 2 )
                 {
                     scroller( [headlines[i].el] );
                     break;
@@ -183,7 +188,7 @@
                     }
                     lastId = myId;
                 } );
-                let targetUrl = encodeURIComponent( 'https://plboppard.de' + ( lastId !== '' ? '?id=' : '' ) + lastId );
+                let targetUrl = encodeURIComponent( site + ( lastId !== '' ? '?id=' : '' ) + lastId );
                 let href = $( 'u', $button ).data( 'url' ) + targetUrl;
                 window.open( href, '_blank' );
             }

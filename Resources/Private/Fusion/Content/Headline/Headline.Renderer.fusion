@@ -1,6 +1,6 @@
 prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+    renderer = TdsOnepager.Site:Resource.Section {
 
         noID = true
         className = ${"headline " + props.colors}

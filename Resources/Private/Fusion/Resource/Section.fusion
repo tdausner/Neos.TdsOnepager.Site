@@ -1,0 +1,12 @@
+prototype(TdsOnepager.Site:Resource.Section) < prototype(Neos.Fusion:Component) {
+
+    id = ${q(node).property('_identifier')}
+    url = Neos.Neos:NodeUri {
+        node = ${q(documentNode)}
+    }
+    content = ${props.content}
+
+    permalink = ${this.url + '?id=' + this.id}
+
+    renderer = TdsOnepager.Site:Resource.Section.Renderer
+}

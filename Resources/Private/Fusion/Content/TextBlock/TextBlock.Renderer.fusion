@@ -20,7 +20,7 @@ prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:R
     @context.nbsp-right = "&nbsp;"
     @context.nbsp-right.@if.nonLeft = ${props.textOrientation != "right"}
 
-    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+    renderer = TdsOnepager.Site:Resource.Section {
 
         className = ${"text-block text-block--" + props.textOrientation + " text-block__author--" + props.authorPosition + " " + props.colors}
         animation = ${props.animation}

@@ -10,7 +10,7 @@ prototype(TdsOnepager.Site:Content.Citation.Renderer) < prototype(Neos.Fusion:Re
         @if.notEmpty = ${props.sound}
     }
 
-    renderer = TdsOnepager.Site:Resource.Section.Renderer {
+    renderer = TdsOnepager.Site:Resource.Section {
 
         className = ${"citation citation--" + props.citationStyle + " " + props.colors}
         animation = ${props.animation}
