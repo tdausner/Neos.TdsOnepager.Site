@@ -1,0 +1,38 @@
+'TdsOnepager.Site:Document.BlogEntryPage':
+  superTypes:
+    'TdsOnepager.Site:Document': true
+
+  ui:
+    icon: comments
+    label: Blog-Eintrag
+    group: general
+#
+# 'https://docs.neos.io/cms/manual/content-repository/node-creation-dialog'
+#
+#    creationDialog:
+#      elements:
+#        blogTitle:
+#          type: string
+#          ui:
+#            label: 'Titel für Blog-Eintrag'
+#            editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
+#        blogCreationDate:
+#          type: DateTime
+#          defaultValue: 'tdoday at 12:00'
+#          #'Date.format(Date.create("now"), "d.m.Y")'
+#          ui:
+#            label: 'Datum des Blog-Eintrags'
+#            editor: 'Neos.Neos/Inspector/Editors/DateTimeEditor'
+#            editorOptions:
+#              format: 'd.m.Y'
+
+  constraints:
+    nodeTypes:
+      'Neos.Neos:Document': false
+      'TdsOnepager.Site:Document.HomePage': false
+      'TdsOnepager.Site:Document.Page': false
+
+  childNodes:
+    main:
+      type: 'TdsOnepager.Site:Collection.Content.BlogEntryPage'
+#

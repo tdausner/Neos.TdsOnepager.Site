@@ -1,0 +1,13 @@
+'TdsOnepager.Site:Collection.Content.Wrapper':
+  superTypes:
+    'Neos.Neos:ContentCollection': true
+
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
+      'TdsOnepager.Site:Component.Organism.SiteHeader': true
+      'TdsOnepager.Site:Component.Organism.SiteFooter': true
+      'TdsOnepager.Site:Component.Organism.Cta': true
+      'TdsOnepager.Site:Atom.Social': true
+      'TdsOnepager.Site:Atom.Text': true

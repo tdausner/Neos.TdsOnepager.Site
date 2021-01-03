@@ -1,35 +1,8 @@
 prototype(TdsOnepager.Site:Content.ImageSection) < prototype(Neos.Neos:ContentComponent) {
 
-    #    inFrontend = ${!node.context.inBackend}
-
     colors = ${q(node).property('colors')}
-    imgWidth = ${q(node).property('width')}
+    width = ${q(node).property('width')}
     animation = ${q(node).property('animation')}
-
-    picture = Neos.Fusion:Case {
-
-        full {
-            condition = ${q(node).property('width') == 'full'}
-            renderer = TdsOnepager.Site:Resource.Picture.Renderer {
-                node = ${q(node)}
-                ratio = ${40 / 10}
-                mobileRatio = ${30 / 10}
-                media = ${[ 1200, 992, 768, 576 ]}
-                width = ${[ 2560, 976, 752, 560 ]}
-            }
-        }
-
-        grid {
-            condition = true
-            renderer = TdsOnepager.Site:Resource.Picture.Renderer {
-                node = ${q(node)}
-                ratio = ${40 / 11}
-                mobileRatio = ${30 / 11}
-                media = ${[ 1200, 992, 768, 576 ]}
-                width = ${[ 1110, 930, 690, 529 ]}
-            }
-        }
-    }
 
     renderer = TdsOnepager.Site:Content.ImageSection.Renderer
 }

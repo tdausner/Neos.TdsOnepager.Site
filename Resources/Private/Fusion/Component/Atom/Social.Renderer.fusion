@@ -1,0 +1,47 @@
+prototype(TdsOnepager.Site:Component.Atom.Social.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        subject = ${"?subject=" + String.rawUrlEncode(props.moreInfo)}
+        subject.@if.more = ${props.moreInfo}
+        svgPath = Neos.Neos:ImageUri {
+            asset = ${props.socialIcon}
+        }
+        colorIcon = ${String.endsWith(props.iconColor, ",0)") ? " color-icon" : " mono-icon"}
+    }
+
+    renderer = Neos.Fusion:Array {
+        icon = Neos.Fusion:Tag {
+            attributes {
+                class = ${"__button " + (props.isMail || props.isPhone ? "" : "--social noscript ")  + props.urlTitle + colorIcon}
+                title = ${props.title}
+                data-url = ${props.shareLink}
+                data-url.@if.social = ${!props.isMail && !props.isPhone}
+            }
+            content = Neos.Fusion:Case {
+                isMailorPhone {
+                    condition = ${props.isMail || props.isPhone}
+                    renderer = Neos.Fusion:Tag {
+                        tagName = "a"
+                        attributes {
+                            href = ${props.shareLink + subject}
+                            class = ${props.isMail ? "mail" : "phone"}
+                        }
+                        content = ${Carbon.FileContent.resource(props.socialIcon)}
+                    }
+                }
+                default {
+                    condition = true
+                    renderer = ${Carbon.FileContent.resource(props.socialIcon)}
+                }
+            }
+        }
+        style = Neos.Fusion:Tag {
+            tagName = "style"
+            attributes.type = "text/css"
+            content = ${".__button.--social." + props.urlTitle + " svg path { fill: " + props.iconColor + "};"}
+
+        }
+        style.@if.fillColor = ${colorIcon == " mono-icon"}
+    }
+    renderer.@if.notEmpty = ${props.socialIcon && String.endsWith(svgPath, ".svg")}
+}

@@ -1,0 +1,12 @@
+'TdsOnepager.Site:Document.Wrapper':
+  superTypes:
+    'TdsOnepager.Site:Document.Page': true
+
+  ui:
+    icon: icon-retweet
+    label: Wrapper
+    group: system
+
+  childNodes:
+    main:
+      type: 'TdsOnepager.Site:Collection.Content.Wrapper'

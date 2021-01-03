@@ -1,0 +1,21 @@
+prototype(TdsOnepager.Site:Content.BlogTeaser) < prototype(Neos.Neos:ContentComponent) {
+
+    inFrontend = ${!node.context.inBackend}
+    buttonPosition = ${q(item).property('buttonPosition')}
+    buttonStyle = "more"
+    buttonLink = Neos.Neos:NodeUri {
+        node = ${q(item).parent().parent().get(0)}
+    }
+    renderButtonLink = true
+
+    @context {
+        node = ${q(item).get(0)}
+        text = ${String.pregReplace(q(item).property('text'), '/(<\/p>[^<]*<p>|&nbsp;)/', ' ' )}
+        text.@process.noParas = ${String.stripTags(value)}
+    }
+    title = ${q(item).property('title')}
+    blogDate = ${Date.formatCldr(q(item).property('blogDate'), 'd. MMMM yyyy', Array.first(node.context.dimensions.language))}
+    text = ${String.cropAtWord(text, 120, '...')}
+
+    renderer = TdsOnepager.Site:Content.BlogTeaser.Renderer
+}

@@ -1,0 +1,7 @@
+prototype(TdsOnepager.Site:Atom.Text.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = "atom-text"
+        content = ${props.text}
+    }
+}

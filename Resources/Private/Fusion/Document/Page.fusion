@@ -1,4 +1,5 @@
 prototype(TdsOnepager.Site:Document.Page) < prototype(Neos.Fusion:Component) {
+
     renderer = TdsOnepager.Site:Document.Base {
         body = TdsOnepager.Site:Component.Template.Page {
             content = Neos.Neos:PrimaryContent {

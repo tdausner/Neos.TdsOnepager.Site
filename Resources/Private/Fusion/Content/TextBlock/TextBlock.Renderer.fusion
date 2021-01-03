@@ -1,28 +1,35 @@
 prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-    @context.sound = Neos.Fusion:Tag {
-        tagName = 'audio'
-        attributes.src = Neos.Fusion:ResourceUri {
-            resource = ${props.sound.resource}
+    @context {
+        spanClass = Neos.Fusion:Case {
+            hasSpan {
+                condition = ${props.hasSpan && !node.context.inBackend}
+                renderer = ${"author col-12" + String.pregReplace(props.author, '/.*<span style="text-align:(.*);">.*<\/span>.*/', ' text-block--$1')}
+            }
+            default {
+                condition = true
+                renderer = "author col-12"
+            }
         }
+        sound = Neos.Fusion:Tag {
+            tagName = 'audio'
+            attributes.src = Neos.Fusion:ResourceUri {
+                resource = ${props.sound.resource}
+            }
 
-        @if.notEmpty = ${props.sound}
+            @if.notEmpty = ${props.sound}
+        }
+        icon = Neos.Fusion:Tag {
+            tagName = "p"
+            attributes.class = "text-block__icon d-none d-md-flex"
+            content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
+        }
+        icon.@if.notEmpty = ${props.icon}
     }
-    @context.icon = Neos.Fusion:Tag {
-        tagName = "p"
-        attributes.class = "text-block__icon d-none d-md-flex"
-        content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
-    }
-    icon.@if.notEmpty = ${props.icon}
-
-    @context.nbsp-left = "&nbsp;"
-    @context.nbsp-left.@if.nonRight = ${props.textOrientation != "left"}
-    @context.nbsp-right = "&nbsp;"
-    @context.nbsp-right.@if.nonLeft = ${props.textOrientation != "right"}
 
     renderer = TdsOnepager.Site:Resource.Section {
 
-        className = ${"text-block text-block--" + props.textOrientation + " text-block__author--" + props.authorPosition + " " + props.colors}
+        className = ${"text-block text-block__author--" + props.authorPosition + " " + props.colors}
         animation = ${props.animation}
 
         content = Neos.Fusion:Array {
@@ -35,8 +42,8 @@ prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:R
             title.@if.notEmpty = ${props.title || props.inBackend}
 
             authorTop = afx`
-                <div class="author col-12">
-                    <h4>{nbsp-left}{props.author}{nbsp-right}</h4>
+                <div class={spanClass}>
+                    <h4>&nbsp;{props.author}&nbsp;</h4>
                 </div>
             `
             authorTop.@if.notEmpty = ${(props.author || props.inBackend) && props.authorPosition == "top"}
@@ -47,8 +54,8 @@ prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:R
             }
 
             authorBottom = afx`
-                <div class="author col-12">
-                    <h4>{nbsp-left}{props.author}{nbsp-right}</h4>
+                <div class={spanClass}>
+                    <h4>&nbsp;{props.author}&nbsp;</h4>
                 </div>
             `
             authorBottom.@if.notEmptyAndBottom = ${(props.author || props.inBackend) && props.authorPosition == 'bottom'}

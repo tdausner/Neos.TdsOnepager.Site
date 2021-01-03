@@ -2,6 +2,14 @@
 This is the NEOS site code for a one-pager. It's based on [bootstrap v4.5.1](https://getbootstrap.com).
 The templates are designed "mobile first".
 
+##  Installation
+
+```
+composer require carbon/eel
+composer require flowpack/neos-matomo
+composer require shel/neos-colorpicker
+```
+
 ## Intention
 The intention of a one-pager is to keep all information in one page. 
 You may use this template for example for a blog.

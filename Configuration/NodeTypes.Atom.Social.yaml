@@ -1,0 +1,74 @@
+'TdsOnepager.Site:Atom.Social':
+  superTypes:
+    'Neos.Neos:Content': TRUE
+
+  ui:
+    label: Social-Link
+    icon: link
+    inlineEditable: true
+
+  properties:
+    socialIcon:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Symbol'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 10
+
+    iconColor:
+      type: string
+      ui:
+        label: 'Symbol-Farbe'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 11
+          editor: 'Shel.Neos.ColorPicker/ColorPickerEditor'
+          editorOptions:
+            # `mode` can be one of "rgba", "hsla", "hex"
+            mode: 'rgba'
+            # Show saturation/hue/alpha (optional), boolean, default: true
+            picker: true
+            # Show hex/rgba fields (optional), boolean, default: true
+            fields: true
+            # Show preset colors (optional), array of colors or boolean (to disable)
+            presetColors: false
+            #presetColors: [ '#4267B2', '#2867B2', '#1DA1F2', '#026466' ]
+    title:
+      type: string
+      ui:
+        label: Service
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 12
+          editorOptions:
+            placeholder: 'Service-Namen eingeben'
+
+    shareLink:
+      type: string
+      ui:
+        label: 'Link zum Service'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 13
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+            placeholder: 'Link eingeben'
+
+    moreInfo:
+      type: string
+      ui:
+        label: 'Weitere Info'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 13
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+            placeholder: 'Weitere Info eingeben'

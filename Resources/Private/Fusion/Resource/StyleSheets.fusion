@@ -5,4 +5,8 @@ prototype(TdsOnepager.Site:Resource.StyleSheets) < prototype(Neos.Fusion:Array) 
     lib = TdsOnepager.Site:Resource.CssInclude {
         path = 'resource://TdsOnepager.Site/Public/Styles/lib.css'
     }
+    backend = TdsOnepager.Site:Resource.CssInclude {
+        path = 'resource://TdsOnepager.Site/Public/Styles/backend.css'
+    }
+    backend.@if.be = ${site.context.inBackend}
 }

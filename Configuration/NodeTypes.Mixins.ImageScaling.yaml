@@ -3,7 +3,7 @@
   properties:
     imageScaling:
       type: string
-      defaultValue: 'left'
+      defaultValue: ''
       ui:
         label: 'Skalierung des Bildes'
         reloadIfChanged: true

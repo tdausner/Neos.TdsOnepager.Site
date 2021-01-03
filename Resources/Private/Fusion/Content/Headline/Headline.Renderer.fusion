@@ -11,7 +11,6 @@ prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Re
             attributes.class = "col-12"
             content = Neos.Fusion:Tag {
                 tagName = "h1"
-                attributes.class = ${"text-block--" + props.textOrientation}
                 attributes.id = ${q(node).property('_identifier')}
                 content = ${props.title}
             }

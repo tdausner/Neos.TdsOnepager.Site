@@ -1,0 +1,18 @@
+prototype(TdsOnepager.Site:Document.Wrapper) < prototype(Neos.Fusion:Component) {
+
+    inHomepage = ${q(node).is('[instanceof TdsOnepager.Site:Document.HomePage]')}
+    inWrapper = true
+
+    renderer = TdsOnepager.Site:Document.Base {
+        body = Neos.Fusion:Component {
+            content = Neos.Neos:PrimaryContent {
+                nodePath = 'main'
+            }
+            renderer = afx`
+                <main class="wrapper">
+                    {props.content}
+                </main>
+            `
+        }
+    }
+}

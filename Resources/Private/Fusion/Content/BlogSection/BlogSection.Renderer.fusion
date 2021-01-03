@@ -1,0 +1,23 @@
+prototype(TdsOnepager.Site:Content.BlogSection.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        id = ${q(node).property('_identifier')}
+        classes = "teaser-section__headline headline col-12"
+    }
+
+    renderer = TdsOnepager.Site:Resource.Section {
+        noRow = true
+        className = ${"blog-section " + props.colors}
+        padding = ${props.padding}
+
+        #animation = ${props.animation} --- is done in TdsOnepager.Site:Content.TeaserBox.Renderer
+        content = afx`
+            <div class="row">
+                <div class={classes}>
+                    <h1>{props.blogTitle}</h1>
+                </div>
+                <TdsOnepager.Site:Content.BlogSection.BlogTeasers/>
+            </div>
+        `
+    }
+}

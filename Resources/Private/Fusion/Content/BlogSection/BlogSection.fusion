@@ -1,0 +1,41 @@
+prototype(TdsOnepager.Site:Content.BlogSection) < prototype(Neos.Neos:ContentComponent) {
+
+    inFrontend = ${!node.context.inBackend}
+
+    blogTitle = Neos.Neos:Editable {
+        property = "title"
+    }
+    buttonLabel = Neos.Neos:Editable {
+        property = "buttonLabel"
+    }
+
+    colors = ${q(node).property('colors')}
+    padding = ${q(node).property('padding')}
+    animation = ${q(node).property('animation')}
+    buttonPosition = ${q(node).property('buttonPosition')}
+
+    renderer = TdsOnepager.Site:Content.BlogSection.Renderer
+
+    @cache {
+        mode = 'dynamic'
+
+        entryIdentifier {
+            node = ${node}
+        }
+
+        entryDiscriminator = ${request.arguments.start}
+
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(node)}
+            2 = ${Neos.Caching.descendantOfTag(node)}
+            3 = ${Neos.Caching.nodeTypeTag('KaufmannDigital.Site:Content.BlogSection')}
+        }
+    }
+
+}

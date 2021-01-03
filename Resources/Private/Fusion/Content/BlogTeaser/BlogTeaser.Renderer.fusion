@@ -1,0 +1,41 @@
+prototype(TdsOnepager.Site:Content.BlogTeaser.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        classes = "d-flex flex-column col-12 col-sm-6 col-md-4 teaser-box"
+        classes.@process.classes = ${props.animation ? (value + " animate animate__animated animate__" + props.animation) : value}
+        teaserImage = TdsOnepager.Site:Resource.Picture.Renderer {
+            node = ${node}
+            ratio = ${3 / 2}
+            mobileRatio = ${3 / 2}
+            media = ${[ 1200, 992, 768, 576 ]}
+            width = ${[  350, 290, 210, 510 ]}
+        }
+    }
+    renderer = Neos.Fusion:Case {
+        @context.html = afx`
+            <div class={classes} data-animation={props.animation}>
+                {teaserImage}
+                <h3 class="blog-entry__headline">
+                    {props.title}
+                    <p class="blog-entry__date date">
+                        {props.blogDate}
+                    </p>
+                </h3>
+                <div><p>{props.text}</p></div>
+                <TdsOnepager.Site:Content.Button.Renderer/>
+            </div>
+        `
+        first {
+            condition = ${start == 0}
+            renderer = ${html}
+        }
+        other {
+            condition = true
+            renderer = Neos.Fusion:Array {
+                0 = ${Json.stringify(html, ['JSON_UNESCAPED_UNICODE', 'JSON_FORCE_OBJECT'])}
+                e = ', '
+                e.@if.isNotLast = ${!iterator.isLast}
+            }
+        }
+    }
+}

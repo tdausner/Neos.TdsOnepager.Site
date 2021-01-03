@@ -8,7 +8,7 @@
     label: 'Bild quer'
     icon: image
     group: 'general'
-    position: 10
+    position: 60
 
   properties:
     image:

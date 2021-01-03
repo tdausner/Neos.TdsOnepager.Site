@@ -1,0 +1,16 @@
+'TdsOnepager.Site:Collection.Content.BlogEntryPage':
+  superTypes:
+    'Neos.Neos:ContentCollection': true
+
+  ui:
+    label: Blog-Eintrag
+
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
+      'TdsOnepager.Site:Content.BlogEntryPage': true
+
+  childNodes:
+    main:
+      type: 'TdsOnepager.Site:Content.BlogEntry'

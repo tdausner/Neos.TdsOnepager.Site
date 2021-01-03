@@ -11,3 +11,5 @@
       'TdsOnepager.Site:Content.TextBlock': true
       'TdsOnepager.Site:Content.Text': true
       'TdsOnepager.Site:Content.Headline': true
+
+      'TdsOnepager.Site:Content.BlogEntry': false

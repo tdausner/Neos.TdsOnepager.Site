@@ -1,19 +1,47 @@
 'TdsOnepager.Site:Component.Organism.SiteFooter':
   superTypes:
     'Neos.Neos:Content': TRUE
+
+  childNodes:
+    socialIcons:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'TdsOnepager.Site:Atom.Social': true
+
   ui:
-    label: 'Footer'
-    icon: 'icon-square'
-    group: 'structure'
-    inlineEditable: TRUE
+    label: Seitenfuß
+    icon: angle-down
+    inlineEditable: true
+
   properties:
-    links:
+
+    gdprText:
+      type: string
+      ui:
+        label: 'DSGVO-Bubble'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'DSGVO-Bubbletext eingeben...'
+            required: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+            formatting:
+              strong: true
+              a: true
+
+    siteLinks:
       type: references
       ui:
-        label: 'Links Fußzeile'
-        reloadIfChanged: TRUE
+        label: 'Links'
+        reloadIfChanged: true
         inspector:
-          group: 'additional'
-          position: 12
+          group: preferences
+          position: 10
           editorOptions:
-            nodeTypes: ['Neos.NodeTypes:Page']
+            nodeTypes: ['TdsOnepager.Site:Document.Page']

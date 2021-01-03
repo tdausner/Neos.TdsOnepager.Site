@@ -6,19 +6,35 @@ prototype(TdsOnepager.Site:Resource.Section.Renderer) < prototype(Neos.Fusion:Re
                 <a href={props.permalink}><i class="fa fa-link"></i></a>
             </div>
         `
-        permlink.@if.doIt = ${!props.noID && !props.noLink}
-        content = Neos.Fusion:Tag {
-            attributes.class = "row"
-            content = ${props.content}
+        permlink.@if {
+            linkit = ${!props.noLink}
+            paddingOK = ${props.padding ? (props.padding != "lower" && props.padding != "none") : true}
+        }
+        content = Neos.Fusion:Case {
+
+            noRow {
+                condition = ${props.noRow}
+                renderer = ${props.content}
+            }
+
+            hasRow {
+                condition = ${!props.noRow}
+                renderer = Neos.Fusion:Tag {
+                    attributes.class = "row"
+                    content = ${props.content}
+                }
+            }
         }
     }
 
     renderer = Neos.Fusion:Tag {
 
         tagName = "section"
-        attributes.id = ${props.id}
-        attributes.id.@if.doIt = ${!props.noID}
-        attributes.class = ${props.className}
+        attributes {
+            id = ${props.id}
+            id.@if.doIt = ${!props.noID}
+            class = ${props.className + (props.padding ? (" section--padding-" + props.padding) : "")}
+        }
         content = Neos.Fusion:Tag {
 
             attributes.class = "container"

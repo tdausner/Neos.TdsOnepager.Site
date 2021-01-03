@@ -1,0 +1,30 @@
+'TdsOnepager.Site:Content.TeaserSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.Animation': true
+    'Neos.Neos:ContentCollection': true
+
+  constraints:
+    nodeTypes:
+      '*' : false
+      'TdsOnepager.Site:Content.TeaserBox': true
+
+  ui:
+    label: 'Teaser-Sammlung'
+    icon: border-all
+    group: general
+    position: 70
+
+  properties:
+    title:
+      ui:
+        inline:
+          editorOptions:
+            autoparagraph: false
+            placeholder: 'Überschrift...'
+            formatting:
+              left: true
+              right: true
+              center: true
+

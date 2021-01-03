@@ -4,72 +4,124 @@ prototype(TdsOnepager.Site:Resource.Picture.Renderer) < prototype(Neos.Fusion:Re
     # - image
     # - title
     # - alternativeText
+    #
+    @context {
+        image = ${q(node).property('image')}
+        title = ${q(node).property('title')}
+        altText = ${q(node).property('altText')}
+        imgId = ${"img-" + this.id}
+        imgId.@if.idSet = ${this.id}
+        media = ${this.media}
+        width = ${this.width}
+        ratio = ${this.ratio}
+        mobileRatio = ${this.mobileRatio}
+        indexes = ${Array.range(Array.length(this.media) - 1, 0, -1)}
 
-    @context.image = ${q(node).property('image')}
-    @context.title = ${q(node).property('title')}
-    @context.altText = ${q(node).property('altText')}
-
-    @context.media = ${this.media}
-    @context.width = ${this.width}
-    ratio = 0
-    @context.ratio = ${this.ratio}
-    mobileRatio = 0
-    @context.mobileRatio = ${this.mobileRatio}
+        mobImgStyle = ${"#img-" + this.id + "{max-height:calc(100vw/" + this.mobileRatio + ")}"}
+        mobImgStyle.@if.idSet = ${this.id}
+        regImgStyle = ${"@media(min-width:576px){#img-" + this.id + "{max-height:calc(100vw/" + this.ratio + ")}}"}
+    }
     # example:
-    # media  = ${[ 1200, 992, 768 ]}    media breakpoints
-    # width  = ${[  730, 610, 450 ]}    image width at breakpiont
+    #
+    # media = ${[ 1200, 992, 768, 576 ]}    media breakpoints
+    # width = ${[  350, 290, 210, 510 ]}    image width at and above breakpiont
     # ratio = ${3 / 1}
-    # mobileRatio = ${4 / 1}            mobile is the last entry (default: media[] = 768)
+    # mobileRatio = ${4 / 1}               mobile is the last entry (default: media[] = 768)
+    #
+    # arrays are evaluated r2l (last entry fist)
+    #
+    renderer = Neos.Fusion:Case{
+        hasImage {
+            condition = ${image}
+            renderer = Neos.Fusion:Array {
+                picture = Neos.Fusion:Tag {
 
-    renderer = Neos.Fusion:Tag {
+                    tagName = "picture"
+                    content = Neos.Fusion:Loop {
+                        items = ${indexes}
+                        itemName = 'index'
+                        itemRenderer = Neos.Fusion:Case {
 
-        tagName = "picture"
-        content = Neos.Fusion:Array {
+                            notLast {
+                                condition = ${image && !iterator.isLast}
+                                renderer = Neos.Fusion:Tag {
 
-            source = Neos.Fusion:Loop {
-                items = ${Array.range(Array.length(media) - 1, 0, -1)}
-                itemName = 'index'
-                itemRenderer = Neos.Fusion:Case {
+                                    tagName = "source"
+                                    attributes.media = ${"(max-width: " + (media[index - 1] - 1) + "px)"}
+                                    attributes.srcset = Neos.Neos:ImageUri {
+                                        allowCropping = ${true}
+                                        allowUpScaling = ${true}
+                                        asset = ${image}
+                                        width = ${width[index]}
+                                        height = ${width[index] / (iterator.isFirst ? mobileRatio : ratio)}
+                                        height.@if.nonZero = ${(iterator.isFirst ? mobileRatio : ratio) > 0}
+                                    }
+                                }
+                            }
 
-                    notLast {
-                        condition = ${!iterator.isLast}
-                        renderer = Neos.Fusion:Tag {
-                            tagName = "source"
-                            attributes.media = ${"(max-width: " + (media[index] - 1) + "px)"}
-                            attributes.srcset = Neos.Neos:ImageUri {
-                                asset = ${image}
-                                width = ${width[index]}
-                                allowCropping = ${true}
-                                allowUpScaling = ${true}
-                                height = ${width[index] / (iterator.isFirst ? mobileRatio : ratio)}
-                                height.@if.nonZero = ${iterator.isFirst && mobileRatio > 0 || !iterator.isFirst && ratio > 0}
+                            last {
+                                condition = ${image && iterator.isLast}
+                                renderer = Neos.Fusion:Tag {
+
+                                    tagName = "img"
+                                    attributes {
+                                        src = Neos.Neos:ImageUri {
+
+                                            allowCropping = ${true}
+                                            allowUpScaling = ${true}
+                                            asset = ${image}
+                                            width = ${width[index]}
+                                            height = ${width[index] / (iterator.isFirst ? mobileRatio : ratio)}
+                                            height.@if.nonZero = ${(iterator.isFirst ? mobileRatio : ratio) > 0}
+                                        }
+                                        title = ${props.title}
+                                        title.@if.notEmpty = ${props.title && image}
+                                        alt = ${props.altText}
+                                        alt.@if.notEmpty = ${props.altText && image}
+                                        class = ${"image-responsive " + props.imageScaling}
+                                        id = ${imgId}
+                                    }
+                                }
                             }
                         }
                     }
+                }
+                /* for iPad/iPhone full width responsive image
 
-                    last {
-                        condition = ${iterator.isLast}
-                        renderer = Neos.Fusion:Tag {
+                #{imgId} {
+                  max-height: calc(100vw / {mobileRatio});
+                }
 
-                            tagName = "img"
-                            attributes.src = Neos.Neos:ImageUri {
-
-                                asset = ${image}
-                                width = ${width[index]}
-                                height = ${width[index] / ratio}
-                                height.@if.nonZero = ${ratio > 0}
-                                allowCropping = ${true}
-                                allowUpScaling = ${true}
-                            }
-                            attributes.title = ${props.title}
-                            attributes.title.@if.notEmpty = ${props.title}
-                            attributes.alt = ${props.altText}
-                            attributes.alt.@if.notEmpty = ${props.altText}
-                            attributes.class = ${"image-responsive " + props.imageScaling}
-
-                            attributes.data-ratio = ${mobileRatio}
-                        }
-                    }
+                @media (min-width: 576px) {
+                  #{imgId} {
+                    max-height: calc(100vw / {ratio});
+                  }
+                }
+                */
+                style = afx`
+                    <style type="text/css">
+                        {mobImgStyle}
+                        {regImgStyle}
+                    </style>
+                `
+                style.@if.idSet = ${mobImgStyle}
+            }
+        }
+        placeholder {
+            @context.plHeight = ${6000 / (ratio > 0 ? ratio : 1)}
+            condition = ${!image}
+            renderer = Neos.Fusion:Tag {
+                attributes.class = "placeholder"
+                content = Neos.Fusion:Array {
+                    l10 = ${'<svg preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 6000 ' + plHeight + '"'}
+                    l12 = ' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"'
+                    l13 = ' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">'
+                    l20 = '  <g transform="matrix(0.987,0,0,0.98025,39,36)">'
+                    l21 = ${'   <rect x="0" y="0" width="6000" height="' + (plHeight - 84) + '" style="fill-opacity:0.23;stroke:black;stroke-width:84px;"/>'}
+                    l23 = '  </g>'
+                    l30 = ${'  <path d="M 0,42 L 6000,' + (plHeight - 126) + '" style="fill:none;stroke:black;stroke-width:84px;"/>'}
+                    l40 = ${'  <path d="M6000,42L0,' + (plHeight - 126) + '" style="fill:none;stroke:black;stroke-width:84px;"/>'}
+                    l50 = '</svg >'
                 }
             }
         }

@@ -6,6 +6,8 @@
     label: Homepage
   constraints:
     nodeTypes:
-      '*': false
-      'TdsOnepager.Site:Document.HomePage': false
+      'Neos.Neos:Shortcut': true
+      'TdsOnepager.Site:Document.Page': true
       'TdsOnepager.Site:Document.Status.404': true
+      'TdsOnepager.Site:Document.Wrapper': true
+      'TdsOnepager.Site:Document.BlogEntryPage': false

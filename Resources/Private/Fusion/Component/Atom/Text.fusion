@@ -1,0 +1,7 @@
+prototype(TdsOnepager.Site:Atom.Text) < prototype(Neos.Neos:ContentComponent) {
+
+    text = Neos.Neos:Editable {
+        property = 'text'
+    }
+    renderer = TdsOnepager.Site:Atom.Text.Renderer
+}

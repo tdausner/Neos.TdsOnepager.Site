@@ -1,0 +1,77 @@
+#
+# blog entry
+#
+'TdsOnepager.Site:Content.BlogEntry':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+    'TdsOnepager.Site:Mixins.Animation': true
+    'TdsOnepager.Site:Atom.Button': true
+
+  ui:
+    label: 'Blog-Eintrag'
+    icon: comment
+
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 1
+
+    title:
+      ui:
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'Überschrift...'
+            formatting:
+              left: true
+              right: true
+              center: true
+    blogDate:
+      type: DateTime
+      defaultValue: now
+      ui:
+        label: 'Datum des Eintrags'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 10
+          editorOptions:
+            placeholder: 'Datum wählen'
+            format: 'd.m.Y'
+    text:
+      ui:
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'Text eingeben'
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+            formatting:
+              strong: true
+              u: true
+              p: true
+              h1: true
+              h2: true
+              h3: true
+              h4: true
+              removeFormat: true
+              left: true
+              right: true
+              center: true
+              justify: true
+              a: true
+              ol: true
+              ul: true
+
+    buttonLabel:
+      defaultValue: zurück
+

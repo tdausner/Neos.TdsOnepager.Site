@@ -1,0 +1,51 @@
+#
+# teaser box with image
+#
+'TdsOnepager.Site:Content.TeaserBox':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+    'TdsOnepager.Site:Content.Button': true
+
+  ui:
+    label: 'Teaser-Box mit Bild'
+    icon: 'file-image'
+    group: general
+    inlineEditable: true
+
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 10
+
+    title:
+      ui:
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'Überschrift...'
+            formatting:
+              left: true
+              right: true
+              center: true
+
+    text:
+      ui:
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'Text eingeben'
+            formatting:
+              left: true
+              right: true
+              center: true
+              justify: true
+
+    buttonLabel:
+      defaultValue: weiterlesen
+

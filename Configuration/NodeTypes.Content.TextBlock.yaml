@@ -3,24 +3,23 @@
     'Neos.Neos:Content': true
     'TdsOnepager.Site:Mixins.ColorStyle': true
     'TdsOnepager.Site:Mixins.TextColumns': true
-    'TdsOnepager.Site:Mixins.TextOrientation': true
     'TdsOnepager.Site:Mixins.Animation': true
     'Neos.NodeTypes.BaseMixins:TitleMixin': true
     'Neos.NodeTypes.BaseMixins:TextMixin': true
 
   ui:
-    label: 'Text-Block'
+    label: 'Externer Beitrag'
     icon: file-text-o
     inlineEditable: true
     group: general
-    position: 40
+    position: 20
 
   properties:
     title:
       ui:
         inline:
           editorOptions:
-            placeholder: 'Titel eingeben (leer lassen => wird nicht angezeigt).'
+            placeholder: 'Titel eingeben...'
 
     author:
       type: string
@@ -29,7 +28,11 @@
         reloadIfChanged: true
         inline:
           editorOptions:
-            placeholder: 'Author (leer lassen => wird nicht angezeigt)'
+            placeholder: 'Autor eingeben...'
+            formatting:
+              left: true
+              right: true
+              center: true
       search:
         elasticSearchMapping:
           type: string

@@ -1,0 +1,56 @@
+'TdsOnepager.Site:Content.BlogSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Content.TeaserSection': true
+    'TdsOnepager.Site:Atom.Button': true
+    'TdsOnepager.Site:Mixins.Padding': true
+
+  constraints:
+    nodeTypes:
+      'TdsOnepager.Site:Mixins.Animation': false
+
+  ui:
+    label: 'Blog'
+    icon: blog
+    group: general
+    position: 70
+
+  properties:
+    title:
+      type: string
+      ui:
+        inline:
+          editorOptions:
+            placeholder: 'Überschrift...'
+            formatting:
+              left: true
+              right: true
+              center: true
+
+    numEntries:
+      type: integer
+      defaultValue: 9
+      ui:
+        label: 'Anzahl Blog-Einträge'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 18
+
+    blogButtonLabel:
+      type: string
+      defaultValue: 'mehr anzeigen'
+      ui:
+        label: 'Text für Buttons aller Blog-Eintäge'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 19
+          editorOptions:
+            placeholder: 'mehr anzeigen'
+
+    buttonPosition:
+      defaultValue: justify-content-center
+      ui:
+        label: 'Position Nachlade-Button'
+

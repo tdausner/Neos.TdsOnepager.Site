@@ -1,0 +1,32 @@
+'TdsOnepager.Site:Mixins.Padding':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        settings:
+          label: 'Absatz-Abstände'
+  properties:
+    padding:
+      type: string
+      defaultValue: 'default'
+      ui:
+        label: 'Abstände oben/unten'
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 90
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'default':
+                label: 'Standard-Abstände'
+                icon: arrows-alt-v
+              'upper':
+                label: 'Abstand nur oben'
+                icon: arrow-up
+              'lower':
+                label: 'Abstand nur unten'
+                icon: arrow-down
+              'none':
+                label: 'keine Abstände'
+                icon: ban

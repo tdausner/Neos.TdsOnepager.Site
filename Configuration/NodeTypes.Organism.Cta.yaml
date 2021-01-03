@@ -1,0 +1,63 @@
+'TdsOnepager.Site:Component.Organism.Cta':
+  superTypes:
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+    'Neos.Neos:Content': true
+
+  childNodes:
+    regularIcons:
+      label: 'Reguläre Icons'
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'TdsOnepager.Site:Atom.Social': true
+
+    socialIcons:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'TdsOnepager.Site:Atom.Social': true
+
+  ui:
+    label: 'CTA'
+    icon: birthday-cake
+    inlineEditable: true
+
+  properties:
+
+    bubbleText:
+      type: string
+      ui:
+        label: 'DSGVO-Bubble'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'DSGVO-Bubbletext eingeben...'
+            required: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+            formatting:
+              strong: true
+              a: true
+
+    instruction:
+      type: string
+      ui:
+        label: 'DSGVO-Hinweis'
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            autoparagraph: true
+            placeholder: 'DSGVO-Hinweistext eingeben'
+            required: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+            formatting:
+              strong: true
+              a: true

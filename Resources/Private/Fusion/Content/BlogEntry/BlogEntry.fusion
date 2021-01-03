@@ -1,0 +1,22 @@
+prototype(TdsOnepager.Site:Content.BlogEntry) < prototype(Neos.Neos:ContentComponent) {
+
+    inFrontend = ${!node.context.inBackend}
+
+    image = ${q(node).property('image')}
+    blogDate = ${q(node).property('blogDate')}
+    date = ${Date.formatCldr(this.blogDate, 'd. MMMM yyyy', Array.first(node.context.dimensions.language))}
+    date.@if.dateIsSet = ${this.blogDate}
+    title = Neos.Neos:Editable {
+        property = "title"
+    }
+    text = Neos.Neos:Editable {
+        property = "text"
+    }
+    button = TdsOnepager.Site:Content.Button {
+        buttonStyle = "back"
+    }
+    colors = ${q(node).property('colors')}
+    animation = ${q(node).property('animation')}
+
+    renderer = TdsOnepager.Site:Content.BlogEntry.Renderer
+}

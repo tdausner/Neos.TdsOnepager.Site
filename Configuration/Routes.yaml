@@ -1,0 +1,10 @@
+-
+  name: 'Node Renderer'
+  uriPattern: 'api/render'
+  defaults:
+    '@package': 'TdsOnepager.Site'
+    '@controller': 'NodeRender'
+    '@action': 'renderNode'
+    '@format': 'html'
+  httpMethods: ['GET']
+  appendExceedingArguments: true

@@ -1,0 +1,53 @@
+prototype(TdsOnepager.Site:Component.Organism.SiteFooter.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        footerLinks = Neos.Fusion:Collection {
+
+            collection = ${q(node).property('siteLinks')}
+            itemName = "link"
+            itemRenderer = Neos.Fusion:Tag {
+                tagName = "a"
+                attributes.href = Neos.Neos:NodeUri {
+                    node = ${link}
+                }
+                content = ${q(link).property('title')}
+            }
+        }
+        footerSocial = Neos.Neos:ContentCollection {
+            nodePath = "socialIcons"
+            attributes.class = "--social-funcs"
+        }
+    }
+
+    renderer = afx`
+        <footer>
+            <div id="bottom" class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="footer-links">
+                            <p>
+                                {footerLinks}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="footer-links-right d-flex justify-content-end">
+                            <div class="--visit-funcs">
+                                {footerSocial}
+                                <div class="share-bubble">
+                                    <div class="share-bubble__inner">
+                                        {props.gdprText}
+                                    </div>
+                                    <div class="share-bubble__arrow">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {info}
+    `
+}

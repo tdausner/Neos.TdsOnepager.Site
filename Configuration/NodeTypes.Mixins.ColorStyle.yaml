@@ -13,11 +13,11 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'cc-white-on-blue':
-                label: 'weiß auf blauem Hintergrund'
-              'cc-blue-on-lightblue':
-                label: 'blau auf hellblauem Hintergrund'
-              'cc-white-on-green':
-                label: 'weiß auf grünem Hintergrund'
               'cc-black-on-white':
                 label: 'schwarz auf weißem Hintergrund'
+              'cc-white-on-turqu':
+                label: 'weiß auf türkisem Hintergrund'
+              'cc-blue-on-lightblue':
+                label: 'blau auf hellblauem Hintergrund'
+              'cc-white-on-blue':
+                label: 'weiß auf blauem Hintergrund'

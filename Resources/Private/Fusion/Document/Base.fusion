@@ -1,10 +1,14 @@
 prototype(TdsOnepager.Site:Document.Base) < prototype(Neos.Fusion:Component) {
 
+    @context.inWrapper = ${q(documentNode).is('[instanceof TdsOnepager.Site:Document.Wrapper]')}
     title = ${q(documentNode).property('title')}
     titleOverride = ${q(documentNode).property('titleOverride')}
-    body = null
 
     renderer = Neos.Neos:Page {
+
+        prototype(Neos.Fusion:Http.ResponseHead) {
+            statusCode = ${node.context.inBackend || !inWrapper ? 200 : 404}
+        }
 
         bodyTag.attributes.class = 'cc-bgw'
         # fix for the safari iphone/ipad css hover bug
@@ -12,6 +16,12 @@ prototype(TdsOnepager.Site:Document.Base) < prototype(Neos.Fusion:Component) {
 
         head {
             metaViewport = '<meta name="viewport" content="width=device-width">'
+            favicon = TdsOnepager.Site:Resource.FaviconInclude {
+                iconType = 'img/png'
+                iconSize = '50x50'
+                path = 'resource://TdsOnepager.Site/Public/Assets/Favicon/square.png'
+            }
+
             stylesheets = TdsOnepager.Site:Resource.StyleSheets
             openSans  = TdsOnepager.Site:Resource.FontInclude {
                 path = 'resource://TdsOnepager.Site/Public/Fonts/OpenSans-Regular.ttf'

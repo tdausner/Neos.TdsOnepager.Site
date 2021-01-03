@@ -1,12 +1,15 @@
 prototype(TdsOnepager.Site:Content.Text) < prototype(Neos.Neos:ContentComponent) {
 
+    inFrontend = ${!node.context.inBackend}
+
     text = Neos.Neos:Editable {
         property = 'text'
     }
     colors = ${q(node).property('colors')}
     textColumns = ${q(node).property('textColumns')}
-    textOrientation = ${q(node).property('textOrientation')}
+    padding = ${q(node).property('padding')}
     animation = ${q(node).property('animation')}
+    noLink = true
 
     renderer = TdsOnepager.Site:Content.Text.Renderer
 }

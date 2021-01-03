@@ -1,0 +1,13 @@
+'TdsOnepager.Site:Content.Button':
+  superTypes:
+    'TdsOnepager.Site:Atom.Button': true
+
+  properties:
+    buttonLink:
+      type: string
+      ui:
+        label: 'Ziel für Button'
+        inspector:
+          group: preferences
+          position: 21
+          editor: 'Neos.Neos/Inspector/Editors/LinkEditor'

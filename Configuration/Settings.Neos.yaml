@@ -16,6 +16,22 @@ Neos:
           position: end
           label: System
           collapsed: true
+    Ui:
+      frontendConfiguration:
+        Psmb_FlatNav:
+          presets:
+            tree:
+              type: tree
+              label: Baum
+              icon: sitemap
+            blogEntries:
+              label: Blog-Eintäge
+              icon: comments
+              type: flat
+              query: 'q(node).find("[instanceof TdsOnepager.Site:Document.BlogEntryPage]").children().children().sort("blogDate", "DESC").parent().parent().get()'
+              newReferenceNodePath: 'q(node).find("[instanceof TdsOnepager.Site:Document.BlogEntryPage]").parent().get(0).path'
+              newNodeType: 'TdsOnepager.Site:Document.BlogEntryPage'
+              disablePagination: true
 
   ContentRepository:
     contentDimensions:
@@ -41,11 +57,3 @@ Neos:
               - de
             uriSegment: ''
 
-#  Media:
-#    assetSources:
-#      pexels:
-#        assetSourceOptions:
-#          accessKey: 563492ad6f91700001000001b9eaa7f7df5b496ab50231665d784b13
-#          copyRightNoticeTemplate: '${"Pexels.com / " + user.name}'
-#          defaultSearchTerm: 'medical'
-#          proxyUrl: '%env:HTTP_PROXY%'

@@ -1,0 +1,81 @@
+prototype(TdsOnepager.Site:Component.Organism.Cta.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = ${"cta-fixed" + (props.inWrapper ? "" : " cta-animate")}
+        content = Neos.Fusion:Tag {
+            attributes.class = "cta-container"
+            content = Neos.Fusion:Tag {
+                attributes.class = "cta-icons"
+                content = Neos.Fusion:Array {
+                    show = afx`
+                        <div class="cta-show noscript">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                    `
+                    top = afx`
+                        <div class="__button --top">
+                            <a class="jump" href="#">
+                                <i class="fa fa-angle-double-up"></i>
+                            </a>
+                        </div>
+                    `
+                    prev = afx`
+                        <div class="__button --prev noscript">
+                            <i class="fa fa-angle-up"></i>
+                        </div>
+                    `
+                    prev.@if.homepage = ${props.inRegularPage}
+                    share = Neos.Fusion:Tag {
+                        attributes.class = "--share-funcs noscript"
+                        content = Neos.Fusion:Array {
+                            social = Neos.Neos:ContentCollection {
+                                nodePath = "socialIcons"
+                                attributes.class = "--social-funcs"
+                            }
+                            share = afx`
+                                <div class="__button --share">
+                                    <i class="fa fa-share-alt"></i>
+                                </div>
+                            `
+                            bubble = Neos.Fusion:Tag {
+                                attributes.class = "share-bubble"
+                                content = Neos.Fusion:Array {
+                                    arrow = afx`
+                                        <div class="share-bubble__arrow">
+                                            <span></span>
+                                        </div>
+                                    `
+                                    bubble = Neos.Fusion:Tag {
+                                        attributes.class = "share-bubble__inner --share"
+                                        content = ${props.bubbleText}
+                                    }
+                                    hint = Neos.Fusion:Tag {
+                                        attributes.class = "share-bubble__inner --instruction"
+                                        content = ${props.instruction}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    regular = Neos.Neos:ContentCollection {
+                        nodePath = "regularIcons"
+                        attributes.class = "--regular-icons"
+                    }
+                    next = afx`
+                        <div class="__button --next noscript">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                    `
+                    next.@if.homepage = ${props.inRegularPage}
+                    bottom = afx`
+                        <div class="__button --bottom">
+                            <a class="jump" href="#bottom">
+                                <i class="fa fa-angle-double-down"></i>
+                            </a>
+                        </div>
+                    `
+                }
+            }
+        }
+    }
+}

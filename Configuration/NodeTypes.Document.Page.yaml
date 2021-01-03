@@ -1,4 +1,4 @@
-TdsOnepager.Site:Document.Page:
+'TdsOnepager.Site:Document.Page':
   superTypes:
     'TdsOnepager.Site:Document': true
 
@@ -8,10 +8,10 @@ TdsOnepager.Site:Document.Page:
 
   constraints:
     nodeTypes:
-      '*': false
       'Neos.Neos:Document': false
-      'Neos.Neos:Shortcut': true
-      'TdsOnepager.Site:Document': true
+      'TdsOnepager.Site:Document.HomePage': false
+      'TdsOnepager.Site:Document.Page': true
+      'TdsOnepager.Site:Document.BlogEntryPage': true
 
   childNodes:
     main:

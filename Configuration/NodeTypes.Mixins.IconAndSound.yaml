@@ -1,4 +1,4 @@
-'TdsOnepager.Site:Content.IconAndSound':
+'TdsOnepager.Site:Mixins.IconAndSound':
   abstract: true
   ui:
     label: 'Symbol und Sound'
@@ -20,7 +20,7 @@
             placeholder: 'Symbol-Namen eingeben'
 
     sound:
-      type: Neos\Media\Domain\Model\Asset
+      type: 'Neos\Media\Domain\Model\Asset'
       ui:
         label: 'Sound'
         reloadIfChanged: true

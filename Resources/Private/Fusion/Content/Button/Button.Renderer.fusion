@@ -1,0 +1,28 @@
+prototype(TdsOnepager.Site:Content.Button.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    #site.context.currentSite.name
+    #localhost
+    @context {
+        isMySite = ${String.pregMatch(props.buttonLink, '/https?:\/\/' + site.context.currentSite.name + '/') ? 1 : 0}
+        isHttp = ${String.startsWith(props.buttonLink, "http")}
+        isHash = ${String.startsWith(props.buttonLink, "#")}
+        target = ${isHttp && !isMySite ? "_blank" : "_self"}
+        href = ${props.buttonStyle == "back" ? "javascript:history.back();" : props.buttonLink}
+        href.@process.convertUris = Neos.Neos:ConvertUris
+        bStyle = ${props.buttonStyle ? ("__button--" + props.buttonStyle + " ") : ""}
+    }
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = ${"d-flex " + props.buttonPosition}
+        content = Neos.Fusion:Tag {
+            tagName = "a"
+            attributes {
+                href = ${href}
+                href.@if.inFrontend = ${props.inFrontend ||props.renderButtonLink}
+                target = ${target}
+                class = ${props.classPrefix + bStyle + " " + bStyle + " __button" + (isHash ? " jump" : "")}
+            }
+            content = ${props.buttonLabel}
+        }
+    }
+}

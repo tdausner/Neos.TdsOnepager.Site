@@ -1,0 +1,59 @@
+prototype(TdsOnepager.Site:Content.BlogSection.BlogTeasers) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        nodes = ${q(site).find('[instanceof TdsOnepager.Site:Content.BlogEntry]').sort('blogDate', 'DESC')}
+        numNodes = ${q(site).find('[instanceof TdsOnepager.Site:Content.BlogEntry]').count()}
+        #numNodes= ${Array.length(nodes)}
+        numEntries = ${q(node).property('numEntries')}
+        animation = ${q(node).property('animation')}
+        start = ${request.arguments.start ? String.toInteger(request.arguments.start) : 0}
+    }
+    renderer = Neos.Fusion:Array {
+        @context.buttonLink = Neos.Fusion:UriBuilder {
+            package = 'TdsOnepager.Site'
+            controller = 'NodeRender'
+            action = 'renderNode'
+            additionalParams = Neos.Fusion:RawArray {
+                node = ${node.contextPath}
+                fusionPath = 'blogTeaserRenderer'
+                start = ${start + numEntries}
+            }
+        }
+        jsOpen = '{ "teasers": [ '
+        jsOpen.@if.not1st = ${start > 0}
+        blogTeaserCollection = Neos.Fusion:Collection {
+
+            collection = ${nodes.slice(start, start + numEntries)}
+            itemRenderer = TdsOnepager.Site:Content.BlogTeaser {
+                buttonLabel = ${blogButtonLabel ? blogButtonLabel : "mehr anzeigen"}
+                animation = ${animation}
+            }
+        }
+        jsEndTeaser = ']'
+        jsEndTeaser.@if.not1st = ${start > 0}
+        button = Neos.Fusion:Case {
+            first {
+                condition = ${start == 0}
+                renderer = Neos.Fusion:Tag {
+
+                    attributes.class = "col-12 blog-section__button"
+                    content = TdsOnepager.Site:Content.Button {
+
+                        classPrefix = "blog-section"
+                        buttonStyle = "load-more"
+                        buttonLink = ${buttonLink}
+                        buttonLink.@if.fe = ${!node.context.inBackend}
+                    }
+                }
+            }
+            other {
+                condition = true
+                renderer = ${', "moreLink": "' + buttonLink + '"'}
+            }
+        }
+        button.@if.render = ${node.context.inBackend || (numNodes > start + numEntries)}
+        jsClose = ' }'
+        jsClose.@if.not1st = ${start > 0}
+    }
+}
+blogTeaserRenderer = TdsOnepager.Site:Content.BlogSection.BlogTeasers

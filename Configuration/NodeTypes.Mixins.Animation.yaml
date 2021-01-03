@@ -5,7 +5,6 @@
       groups:
         settings:
           label: 'Animation'
-          icon: icon-video
   properties:
     animation:
       type: 'string'

@@ -1,71 +1,23 @@
-prototype(TdsOnepager.Site:Component.Organism.SiteHeader) < prototype(Neos.Fusion:Component) {
+prototype(TdsOnepager.Site:Component.Organism.SiteHeader) < prototype(Neos.Neos:ContentComponent) {
 
-
-    @context.bars = Neos.Fusion:Case {
-        homepage {
-            condition = ${q(node).is('[instanceof TdsOnepager.Site:Document.HomePage]')}
-            renderer = Neos.Fusion:Tag {
-
-                attributes.class = 'fa fa-bars'
-                content = Neos.Fusion:Tag {
-
-                    tagName = "ul"
-                    content = Neos.Fusion:Loop {
-
-                        items = ${q(node).find('[instanceof TdsOnepager.Site:Content.Headline]')}
-                        itemName = 'entry'
-                        itemRenderer = Neos.Fusion:Tag {
-
-                            tagName = "li"
-                            content = Neos.Fusion:Tag {
-
-                                tagName = "a"
-                                attributes.class = "jump"
-                                attributes.href = ${"#" + q(entry).property('_identifier')}
-                                content = ${q(entry).property('title')}
-                            }
-                        }
-                        itemRenderer.@if.hasTitle = ${q(entry).property('title') != ''}
-                    }
-                }
-                #menu.@if.frontend = ${!node.context.inBackend}
-            }
-        }
-        other {
-            condition = true
-            renderer = '<i class="fa fa-angle-double-left" onclick="javascript:location.href=\'/\'"></i>'
-        }
+    pageTitle = Neos.Neos:Editable {
+        property = 'pageTitle'
     }
+    claim = Neos.Neos:Editable {
+        property = 'claim'
+    }
+    noscript = Neos.Neos:Editable {
+        property = 'noscript'
+    }
+    wrapperNode = ${q(site).find('[instanceof TdsOnepager.Site:Component.Organism.SiteHeader]').get(0)}
+    home = ${q(site).property('_path')}
+    inWrapper = ${q(documentNode).is('[instanceof TdsOnepager.Site:Document.Wrapper]')}
+    jumpPoints = ${q(documentNode).find('[instanceof TdsOnepager.Site:Content.Headline,TdsOnepager.Site:Content.TeaserSection,TdsOnepager.Site:Content.BlogSection]')}
+    homeNode = ${q(site).find('[instanceof TdsOnepager.Site:Document.Homepage]')}
+    homePath = ${q(this.homeNode).property('_path')}
+    nodePath = ${q(node).property('_path')}
 
-    renderer = afx`
-        <header>
-            <div id="top" class="header--fixed">
-                <div class="container">
-                    <div class="row flex-row">
-                        <div class="header__text col-11">
-                            <h1>Philipp Loringhoven</h1>
-                            <div class="header__claim">
-                                <p>Unabhängig in der verbandsfreien Stadt Boppard</p>
-                            </div>
-                        </div>
-                        <div class="col-1 d-flex flex-row justify-content-end align-items-center">
-                            <div class="menu">
-                                {bars}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="header__text col-12">
-                        <h1>&nbsp;</h1>
-                        <div class="header__claim">
-                            <p>&nbsp;</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-    `
+    renderer = TdsOnepager.Site:Component.Organism.SiteHeader.Renderer {
+        @context.node = ${props.node}
+    }
 }

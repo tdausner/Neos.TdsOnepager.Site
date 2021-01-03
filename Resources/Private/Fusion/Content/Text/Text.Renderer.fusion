@@ -2,7 +2,8 @@ prototype(TdsOnepager.Site:Content.Text.Renderer) < prototype(Neos.Fusion:Render
 
     renderer = TdsOnepager.Site:Resource.Section {
 
-        className = ${"text text-block--" + props.textOrientation + " " + props.colors}
+        className = ${"text " + (props.padding ? ("text--padding-section-" + props.padding + " ") : "")  + props.colors }
+        padding = ${props.padding}
         animation = ${props.animation}
 
         content = Neos.Fusion:Tag {

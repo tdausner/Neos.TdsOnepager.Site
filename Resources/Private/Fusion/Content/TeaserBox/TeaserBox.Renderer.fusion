@@ -1,0 +1,24 @@
+prototype(TdsOnepager.Site:Content.TeaserBox.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        classes = "d-flex flex-column col-12 col-sm-6 col-md-4 teaser-box"
+        classes.@process.classes = ${props.animation ? (value + " animate animate__animated animate__" + props.animation) : value}
+        data = ${props.animation ? props.animation : ""}
+        image = TdsOnepager.Site:Resource.Picture.Renderer {
+            node = ${props.image}
+            ratio = ${3 / 2}
+            mobileRatio = ${3 / 2}
+            media = ${[ 1200, 992, 768, 576 ]}
+            width = ${[  350, 290, 210, 510 ]}
+        }
+    }
+
+    renderer = afx`
+        <div class={classes} data-animation={data}>
+            {image}
+            <h3>{props.title}</h3>
+            <div>{props.text}</div>
+            {props.button}
+        </div>
+    `
+}

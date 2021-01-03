@@ -1,0 +1,4 @@
+prototype(Neos.Neos:ContentCollection) {
+    attributes.class.@process.collectionClass.@if.onlyInBackend = ${node.context.inBackend}
+    attributes.class = "collection"
+}

@@ -1,31 +1,10 @@
-prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Fusion:Component) {
+prototype(TdsOnepager.Site:Component.Organism.SiteFooter) < prototype(Neos.Neos:ContentComponent) {
 
-    @context.impressum = Neos.Neos:NodeUri {
-        node = '/sites/site/node-cs18ujdfw93ld'
+    @context.node = ${q(site).find('[instanceof TdsOnepager.Site:Component.Organism.SiteFooter]').get(0)}
+
+    gdprText = Neos.Neos:Editable {
+        property = 'gdprText'
     }
-    @context.datenschutz = Neos.Neos:NodeUri {
-        node = '/sites/site/node-xmpla1w6x22lr'
-    }
-    renderer = afx`
-        <footer>
-            <div id="bottom" class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <p>
-                            <a href={impressum}>Impressum</a> | <a href={datenschutz}>Datenschutz</a>
-                        </p>
-                        <p>
-                            <a href="tel:+4917677610510">
-                                <i class="fa fa-phone"></i>
-                            </a>
-                            <a href="mailto:philipp@plboppard.de?subject=Frage%20an%20den%20Buergermeisterkandidaten%20Philipp%20Loringhoven">
-                                <i class="fa fa-envelope"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        {info}
-    `
+
+    renderer = TdsOnepager.Site:Component.Organism.SiteFooter.Renderer
 }

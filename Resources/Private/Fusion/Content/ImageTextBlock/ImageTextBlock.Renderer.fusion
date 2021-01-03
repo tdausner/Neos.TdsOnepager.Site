@@ -1,28 +1,101 @@
 prototype(TdsOnepager.Site:Content.ImageTextBlock.Renderer) < prototype(Neos.Fusion:Renderer) {
 
+    @context {
+        imagePos = ${String.stripTags(props.imagePosition)}
+        posText = ${{"left": "links", "top": "oben", "right": "rechts" }}
+    }
+
     renderer = TdsOnepager.Site:Resource.Section {
-
         className = ${"image-text-block " + props.colors}
+        padding = ${props.padding}
         animation = ${props.animation}
-
         content = Neos.Fusion:Array {
+            headline = afx`
+                <div class="image-text-block__headline col-12">
+                    {props.headline}
+                </div>
+            `
+            headline.@if.notEmpty = ${props.headline}
+            imagePos = afx`
+                <div class="image-text-block__image-position" style="display: none;">
+                    {props.imagePosition}
+                </div>
+            `
+            imagePos.@if.backend = ${node.context.inBackend}
+            image-and-text = Neos.Fusion:Tag {
+                attributes.class = "col-12"
+                content = Neos.Fusion:Array {
+                    image = Neos.Fusion:Tag {
+                        attributes.class = ${"image-text-block__image image-text-block__image--" + imagePos}
+                        content = Neos.Fusion:Case {
+                            backend {
+                                condition = ${node.context.inBackend}
+                                renderer = Neos.Fusion:Array {
+                                    positioner = Neos.Fusion:Tag {
+                                        attributes.class = "image-text-block__positioner"
+                                        content = Neos.Fusion:Tag {
+                                            @context.name = ${props.id + "-name"}
+                                            tagName = "fieldset"
+                                            content = Neos.Fusion:Loop {
+                                                items = ${[ 'left', 'top', 'right' ]}
+                                                itemName = 'pos'
+                                                itemRenderer = Neos.Fusion:Array {
+                                                    @context {
+                                                        id = ${props.id + "-" + pos}
+                                                        checked = 'checked'
 
-            image = Neos.Fusion:Tag {
-
-                attributes.class = ${"image col-12 col-md-6 order-md-" + (props.imagePosition == "left" ? "0" : "1")}
-                content = TdsOnepager.Site:Resource.Picture.Renderer {
-                    node = ${q(image)}
-                    ratio = 0
-                    mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : 0}
-                    media  = ${[ 1200, 992, 768 ]}
-                    width  = ${[  585, 481, 545 ]}
+                                                    }
+                                                    input = afx`
+                                                        <input type="radio" name={name}
+                                                               id={id} value={pos}
+                                                               onclick="TdsOnepager.ImageTextBlock.onclick(this)"
+                                                        />
+                                                    `
+                                                    label = afx`
+                                                        <label for={id}> {posText[pos]}</label>
+                                                    `
+                                                }
+                                            }
+                                        }
+                                    }
+                                    image = TdsOnepager.Site:Resource.Picture.Renderer {
+                                        node = ${props.image}
+                                        ratio = ${props.image.orientation == 'portrait' ? 0 : (3 / 2)}
+                                        mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : (3 / 2)}
+                                        media = ${[ 1200 ]}
+                                        width = ${[ 1110 ]}
+                                    }
+                                }
+                            }
+                            frontend {
+                                condition = true
+                                renderer = Neos.Fusion:Case {
+                                    imgTop {
+                                        condition = ${imagePos == "top"}
+                                        renderer = TdsOnepager.Site:Resource.Picture.Renderer {
+                                            node = ${props.image}
+                                            ratio = ${0}
+                                            mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : (3 / 2)}
+                                            media = ${[ 1200, 992, 768, 576 ]}
+                                            width = ${[ 1110, 930, 690, 530 ]}
+                                        }
+                                    }
+                                    imgElse {
+                                        condition = true
+                                        renderer = TdsOnepager.Site:Resource.Picture.Renderer {
+                                            node = ${props.image}
+                                            ratio = ${props.image.orientation == 'portrait' ? 0 : (3 / 2)}
+                                            mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : (3 / 2)}
+                                            media = ${[ 1200, 992, 768, 576 ]}
+                                            width = ${[  540, 450, 330, 510 ]}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    text = ${props.text}
                 }
-            }
-
-            text = Neos.Fusion:Tag {
-
-                attributes.class = ${"text-block col-12 col-md-6 order-md-" + (props.imagePosition == "right" ? "0" : "1") + " text-block--" + props.textOrientation}
-                content = ${props.text}
             }
         }
     }

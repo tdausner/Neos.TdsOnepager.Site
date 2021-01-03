@@ -9,6 +9,10 @@
         inline:
           editorOptions:
             placeholder: 'Kopfzeile eingeben...'
+            formatting:
+              left: true
+              right: true
+              center: true
       search:
         elasticSearchMapping:
           type: string

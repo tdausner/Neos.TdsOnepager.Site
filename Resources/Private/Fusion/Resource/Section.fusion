@@ -8,5 +8,8 @@ prototype(TdsOnepager.Site:Resource.Section) < prototype(Neos.Fusion:Component) 
 
     permalink = ${this.url + '?id=' + this.id}
 
+    noLink = ${props.noLink}
+    noRow = ${props.noRow}
+
     renderer = TdsOnepager.Site:Resource.Section.Renderer
 }

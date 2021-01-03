@@ -1,0 +1,6 @@
+prototype(TdsOnepager.Site:Document.BlogEntryPage) < prototype(TdsOnepager.Site:Document.Page) {
+
+    body.content.main = Neos.Neos:ContentComponent {
+        blogDate = ${q(node).property('blogDate')}
+    }
+}

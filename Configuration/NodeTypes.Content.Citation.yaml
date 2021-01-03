@@ -2,7 +2,7 @@
   superTypes:
     'Neos.Neos:Content': true
     'TdsOnepager.Site:Mixins.ColorStyle': true
-    'TdsOnepager.Site:Content.IconAndSound': true
+    'TdsOnepager.Site:Mixins.IconAndSound': true
     'TdsOnepager.Site:Mixins.Animation': true
 
   ui:
@@ -20,7 +20,7 @@
         reloadIfChanged: true
         inline:
           editorOptions:
-            placeholder: 'Geben Sie ein Zitat ein...'
+            placeholder: 'Zitat-Text eingeben...'
       search:
         elasticSearchMapping:
           type: string
@@ -48,7 +48,7 @@
         reloadIfChanged: true
         inline:
           editorOptions:
-            placeholder: 'Organisation (oder leer)'
+            placeholder: 'Organisation'
       search:
         elasticSearchMapping:
           type: string

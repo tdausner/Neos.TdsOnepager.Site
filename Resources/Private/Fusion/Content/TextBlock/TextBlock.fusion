@@ -14,9 +14,10 @@ prototype(TdsOnepager.Site:Content.TextBlock) < prototype(Neos.Neos:ContentCompo
 
     colors = ${q(node).property('colors')}
     textColumns = ${q(node).property('textColumns')}
-    textOrientation = ${q(node).property('textOrientation')}
     authorPosition = ${q(node).property('authorPosition')}
     animation = ${q(node).property('animation')}
+
+    hasSpan = ${String.pregMatch(this.author, "/<span style=/")}
 
     renderer = TdsOnepager.Site:Content.TextBlock.Renderer
 }

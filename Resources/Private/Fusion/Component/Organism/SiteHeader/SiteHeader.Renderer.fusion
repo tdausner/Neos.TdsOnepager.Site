@@ -1,0 +1,93 @@
+prototype(TdsOnepager.Site:Component.Organism.SiteHeader.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        pageTitle = ${props.inWrapper ? props.pageTitle : q(props.wrapperNode).property('pageTitle')}
+        claim = ${props.inWrapper ? props.claim : q(props.wrapperNode).property('claim')}
+        noscript = ${props.inWrapper ? props.noscript : q(props.wrapperNode).property('noscript')}
+        bars = Neos.Fusion:Case {
+            hasJumpPoints {
+                condition = ${props.jumpPoints.get(0)}
+                renderer = Neos.Fusion:Tag {
+
+                    attributes.class = 'fa fa-bars'
+                    content = Neos.Fusion:Tag {
+
+                        tagName = "ul"
+                        content = Neos.Fusion:Array {
+                            junps = Neos.Fusion:Loop {
+
+                                items = ${props.jumpPoints}
+                                itemRenderer = Neos.Fusion:Tag {
+
+                                    tagName = "li"
+                                    content = Neos.Fusion:Tag {
+
+                                        tagName = "a"
+                                        attributes.class = "jump"
+                                        attributes.href = ${"#" + q(item).property('_identifier')}
+                                        content = ${q(item).property('title')}
+                                    }
+                                }
+                                itemRenderer.@if.hasTitle = ${q(item).property('title') != ''}
+                                itemRenderer.@if.pathOk = ${String.startsWith(q(item).property('_path'), props.nodePath + '/main')}
+                            }
+                            back = afx`
+                                <li>
+                                    <a href="javascript:history.back();" class="__go--back">zurück</a>
+                                </li>
+                            `
+                            back.@if.notHome = ${props.homePath != props.nodePath}
+
+                        }
+                    }
+                }
+            }
+            other {
+                condition = true
+                renderer = Neos.Fusion:Tag {
+                    tagName = "a"
+                    attributes.href = Neos.Neos:NodeUri {
+                        node = ${props.home}
+                    }
+                    content = '<i class="fa fa-angle-double-left"></i>'
+                }
+            }
+        }
+    }
+
+    renderer = afx`
+        <header>
+            <div id="top" class="header--fixed">
+                <TdsOnepager.Site:Component.Organism.Cta/>
+                <div class="container">
+                    <div class="row flex-row">
+                        <div class="header__text col-sm-11 col-10">
+                            <h1 class="noscript">{pageTitle}</h1>
+                            <div class="header__claim">
+                                <p>{claim}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-2 d-flex flex-row justify-content-end align-items-center">
+                            <div class="menu">
+                                {bars}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="header__text col-12">
+                        <h1 class="noscript">&nbsp;</h1>
+                        <div class="header__claim">
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header__noscript noscript">
+                {noscript}
+            </div>
+        </header>
+    `
+}

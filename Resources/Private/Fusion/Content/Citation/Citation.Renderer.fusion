@@ -1,13 +1,13 @@
 prototype(TdsOnepager.Site:Content.Citation.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-
-    @context.sound = Neos.Fusion:Tag {
-        tagName = 'audio'
-        attributes.src = Neos.Fusion:ResourceUri {
-            resource = ${props.sound.resource}
+    @context {
+        sound = Neos.Fusion:Tag {
+            tagName = 'audio'
+            attributes.src = Neos.Fusion:ResourceUri {
+                resource = ${props.sound.resource}
+            }
         }
-
-        @if.notEmpty = ${props.sound}
+        sound.@if.notEmpty = ${props.sound}
     }
 
     renderer = TdsOnepager.Site:Resource.Section {
@@ -19,12 +19,12 @@ prototype(TdsOnepager.Site:Content.Citation.Renderer) < prototype(Neos.Fusion:Re
 
             author-n-org = Neos.Fusion:Tag {
 
-                attributes.class = "col-md-3 col-sm-12"
+                attributes.class = "col-md-4 col-sm-12"
                 content = Neos.Fusion:Array {
 
                     icon = Neos.Fusion:Tag {
                         tagName = "p"
-                        attributes.class = "citation__icon d-none d-md-flex"
+                        attributes.class = ${"citation__icon d-none d-md-flex" + (props.sound ? " --sound" : "")}
                         content = ${'<i class="fa fa-' + props.icon + '">' + sound + '</i>'}
                     }
                     icon.@if.notEmpty = ${props.icon}

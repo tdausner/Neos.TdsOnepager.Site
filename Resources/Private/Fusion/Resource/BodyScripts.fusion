@@ -7,4 +7,9 @@ prototype(TdsOnepager.Site:Resource.BodyScripts) < prototype(Neos.Fusion:Array) 
     main = TdsOnepager.Site:Resource.JsInclude {
         path = 'resource://TdsOnepager.Site/Public/JavaScript/main.js'
     }
+
+    backend = TdsOnepager.Site:Resource.JsInclude {
+        path = 'resource://TdsOnepager.Site/Public/JavaScript/backend.js'
+    }
+    backend.@if.be = ${site.context.inBackend}
 }

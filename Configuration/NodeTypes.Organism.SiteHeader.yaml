@@ -1,0 +1,44 @@
+'TdsOnepager.Site:Component.Organism.SiteHeader':
+  superTypes:
+    'Neos.Neos:Content': true
+
+  ui:
+    label: Seitenkopf
+    icon: angle-up
+    inlineEditable: true
+
+  properties:
+    pageTitle:
+      type: string
+      ui:
+        label: Seitentitel
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Seitentitel eingeben'
+
+    claim:
+      type: string
+      ui:
+        label: Claim
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Claim eingeben'
+
+    noscript:
+      type: string
+      ui:
+        label: Noscript-Hinweis
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Noscript-Hinweis eingeben'
+            formatting:
+              p: true
+              h2: true
+              sub: true
+            autoparagraph: true

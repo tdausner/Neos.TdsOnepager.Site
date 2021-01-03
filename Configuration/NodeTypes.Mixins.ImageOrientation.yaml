@@ -12,9 +12,12 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              right:
-                label: 'Bild rechts'
-                icon: chevron-right
               left:
                 label: 'Bild links'
                 icon: chevron-left
+              top:
+                label: 'Bild oben'
+                icon: chevron-up
+              right:
+                label: 'Bild rechts'
+                icon: chevron-right

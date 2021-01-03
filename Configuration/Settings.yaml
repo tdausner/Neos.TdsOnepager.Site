@@ -2,3 +2,8 @@ Neos:
   Fusion:
     defaultContext:
       Url: 'TdsOnepager\Site\Eel\Helper\UrlHelper'
+
+  Flow:
+    mvc:
+      routes:
+        TdsOnepager.Site: true

@@ -1,0 +1,38 @@
+prototype(TdsOnepager.Site:Content.BlogEntry.Renderer) < prototype(Neos.Fusion:Renderer) {
+
+    @context {
+        image = TdsOnepager.Site:Resource.Picture.Renderer {
+            node = ${props.image}
+            ratio = ${3 / 2}
+            mobileRatio = ${3 / 2}
+            media = ${[ 1200, 992, 768, 576, 300 ]}
+            width = ${[ 1110, 930, 690, 510, 545 ]}
+        }
+        id = ${q(node).property('_identifier')}
+    }
+
+    renderer = TdsOnepager.Site:Resource.Section {
+        noLink = true
+        className = ${"blog-entry " + props.colors}
+        animation = ${props.animation}
+        content = afx`
+            <div class="blog-entry__image col-12 offset-0 col-lg-10 offset-lg-1">
+                {image}
+            </div>
+            <div class="blog-entry__headline headline col-12 offset-0 col-lg-10 offset-lg-1">
+                <h1>
+                    {props.title}
+                    <p class="blog-entry__date date">
+                        {props.date}
+                    </p>
+                </h1>
+            </div>
+            <div class="blog-entry__text text col-12 offset-0 col-lg-10 offset-lg-1">
+                {props.text}
+            </div>
+            <div class="blog-entry__button col-12 offset-0 col-lg-10 offset-lg-1">
+                {props.button}
+            </div>
+        `
+    }
+}

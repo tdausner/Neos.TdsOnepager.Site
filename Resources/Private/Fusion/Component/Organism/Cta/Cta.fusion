@@ -1,125 +1,15 @@
-prototype(TdsOnepager.Site:Component.Organism.Cta) < prototype(Neos.Fusion:Component) {
+prototype(TdsOnepager.Site:Component.Organism.Cta) < prototype(Neos.Neos:ContentComponent) {
 
-    @context.facebookUrl  = '<u data-url="https://www.facebook.com/sharer/sharer.php?u="></u>'
-    @context.linkedinkUrl = '<u data-url="https://www.linkedin.com/shareArticle?mini=true&url="></u>'
-    @context.twitterUrl   = '<u data-url="https://twitter.com/intent/tweet?url="></u>'
-    @context.xingUrl      = '<u data-url="https://www.xing.com/social/share/spi?url="></u>'
-    @context.datenschutz  = Neos.Neos:NodeUri {
-        node = '/sites/site/node-xmpla1w6x22lr'
+    @context.node = ${q(site).find('[instanceof TdsOnepager.Site:Component.Organism.Cta]').get(0)}
+
+    bubbleText = Neos.Neos:Editable {
+        property = 'bubbleText'
     }
-
-    renderer = Neos.Fusion:Case {
-        homepage {
-            condition = ${q(node).is('[instanceof TdsOnepager.Site:Document.HomePage]')}
-            renderer = Neos.Fusion:Tag {
-                attributes.class = "cta-fixed"
-                content = Neos.Fusion:Tag {
-                    attributes.class = "cta-container"
-                    content = Neos.Fusion:Array {
-                        show = afx`
-                            <div class="cta-show detectJs">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                        `
-                        icons = Neos.Fusion:Tag {
-                            attributes.class = "cta-icons"
-                            content = Neos.Fusion:Array {
-                                top = afx`
-                                    <div class="__button --top">
-                                        <a class="jump" href="#top">
-                                            <i class="fa fa-angle-double-up"></i>
-                                        </a>
-                                    </div>
-                                `
-                                prev = afx`
-                                    <div class="__button --prev detectJs">
-                                        <i class="fa fa-angle-up"></i>
-                                    </div>
-                                `
-                                share = Neos.Fusion:Tag {
-                                    attributes.class = "--share-funcs detectJs"
-                                    content = Neos.Fusion:Array {
-                                        social = Neos.Fusion:Tag {
-                                            attributes.class = "--social-funcs"
-                                            content = Neos.Fusion:Array {
-                                                xing = afx`
-                                                    <div class="__button --social xing" title="Xing">
-                                                        {xingUrl}
-                                                        <i class="fa fa-xing-square"></i>
-                                                    </div>
-                                                `
-                                                twitter = afx`
-                                                    <div class="__button --social twitter" title="Twitter">
-                                                        {twitterUrl}
-                                                        <i class="fa fa-twitter-square"></i>
-                                                    </div>
-                                                `
-                                                linkedin = afx`
-                                                    <div class="__button --social linkedin" title="LinkedIn">
-                                                        {linkedinkUrl}
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </div>
-                                                `
-                                                facebook = afx`
-                                                    <div class="__button --social facebook" title="Facebook">
-                                                        {facebookUrl}
-                                                        <i class="fa fa-facebook-square"></i>
-                                                    </div>
-                                                `
-                                            }
-                                        }
-                                        share = afx`
-                                            <div class="__button --share">
-                                                <i class="fa fa-share-alt"></i>
-                                            </div>
-                                        `
-                                        bubble = afx`
-                                            <div class="cta-share-bubble">
-                                                <div class="cta-share-bubble--inner">
-                                                    <span class="cta-share-bubble--arrow"></span>
-                                                    <p>Wenn Sie nochmals hier klicken, wird der Button aktiv uns Sie können Ihre Empfehlung teilen. Ihre Daten werden umgehend an % übertragen. Mehr in der <a href={datenschutz}>Datenschutzerklärung</a>.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        `
-                                    }
-                                }
-                                phone = afx`
-                                    <div class="__button --phone">
-                                        <a href="tel:+4917677610510">
-                                            <i class="fa fa-phone"></i>
-                                        </a>
-                                    </div>
-                                `
-                                mail = afx`
-                                    <div class="__button --mail">
-                                        <a href="mailto:philipp@plboppard.de?subject=Frage%20an%20den%20Buergermeisterkandidaten%20Philipp%20Loringhoven">
-                                            <i class="fa fa-envelope"></i>
-                                        </a>
-                                    </div>
-                                `
-                                next = afx`
-                                    <div class="__button --next detectJs">
-                                        <i class="fa fa-angle-down"></i>
-                                    </div>
-                                `
-                                bottom = afx`
-                                    <div class="__button --bottom">
-                                        <a class="jump" href="#bottom">
-                                            <i class="fa fa-angle-double-down"></i>
-                                        </a>
-                                    </div>
-                                `
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        other {
-            condition = true
-            renderer = ''
-        }
+    instruction = Neos.Neos:Editable {
+        property = 'instruction'
     }
+    inRegularPage = ${q(documentNode).is('[instanceof TdsOnepager.Site:Document.Page]')}
+    inWrapper = ${q(documentNode).is('[instanceof TdsOnepager.Site:Document.Wrapper]')}
 
+    renderer = TdsOnepager.Site:Component.Organism.Cta.Renderer
 }

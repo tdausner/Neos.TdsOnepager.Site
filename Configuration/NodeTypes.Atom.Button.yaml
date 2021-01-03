@@ -1,0 +1,42 @@
+'TdsOnepager.Site:Atom.Button':
+  abstract: true
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Button'
+    icon: 'icon-square'
+    group: 'general'
+    inlineEditable: true
+
+  properties:
+    buttonLabel:
+      type: string
+      defaultValue: "weitere laden"
+      ui:
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Beschriftung'
+
+    buttonPosition:
+      type: string
+      defaultValue: justify-content-start
+      ui:
+        label: Button-Position
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              justify-content-start:
+                label: links
+                icon: align-left
+              justify-content-center:
+                label: mitte
+                icon: align-center
+              justify-content-end:
+                label: rechts
+                icon: align-right

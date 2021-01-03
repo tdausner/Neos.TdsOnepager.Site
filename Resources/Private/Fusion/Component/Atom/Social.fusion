@@ -1,0 +1,16 @@
+prototype(TdsOnepager.Site:Atom.Social) < prototype(Neos.Neos:ContentComponent) {
+
+    title = ${q(node).property('title')}
+    socialIcon = ${q(node).property('socialIcon')}
+    iconColor = ${q(node).property('iconColor')}
+    shareLink = ${q(node).property('shareLink')}
+    moreInfo = ${q(node).property('moreInfo')}
+
+    isMail = ${String.startsWith(this.shareLink, "mailto:")}
+    isPhone = ${String.startsWith(this.shareLink, "tel:")}
+
+    urlTitle = ${Carbon.String.urlize(this.title)}
+    urlTitle.@if.social = ${!this.isMail && !this.isPhone}
+
+    renderer = TdsOnepager.Site:Component.Atom.Social.Renderer
+}

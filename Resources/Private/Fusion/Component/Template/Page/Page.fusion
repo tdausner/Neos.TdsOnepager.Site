@@ -2,7 +2,6 @@ prototype(TdsOnepager.Site:Component.Template.Page) < prototype(Neos.Fusion:Comp
 
     renderer = afx`
         <TdsOnepager.Site:Component.Organism.SiteHeader/>
-        <TdsOnepager.Site:Component.Organism.Cta/>
         <main class={styles.page}>
             {props.content}
         </main>

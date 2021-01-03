@@ -1,0 +1,18 @@
+prototype(TdsOnepager.Site:Content.TeaserBox) < prototype(Neos.Neos:ContentComponent) {
+
+    inFrontend = ${!node.context.inBackend}
+
+    image = ${q(node).property('image')}
+    title = Neos.Neos:Editable {
+        property = "title"
+    }
+    text = Neos.Neos:Editable {
+        property = "text"
+    }
+    button = TdsOnepager.Site:Content.Button {
+        buttonStyle = "more"
+    }
+    animation = ${q(node).parent().property('animation')}
+
+    renderer = TdsOnepager.Site:Content.TeaserBox.Renderer
+}

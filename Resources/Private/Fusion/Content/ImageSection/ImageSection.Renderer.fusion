@@ -1,29 +1,49 @@
 prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusion:Renderer) {
 
-    @context.id = ${q(node).property('_identifier')}
-    @context.picture = afx`
-        <div class="col-12">
-            {props.picture}
-        </div>
-    `
+    @context {
+        id = ${q(node).property('_identifier')}
+        image = Neos.Fusion:Case {
+            full {
+                condition = ${props.width == 'full'}
+                renderer = TdsOnepager.Site:Resource.Picture.Renderer {
+                    node = ${props.node}
+                    ratio = ${4 / 1}
+                    mobileRatio = ${2 / 1}
+                    media = ${[ 1200,  992, 768, 576, 200 ]}
+                    width = ${[ 2560, 1199, 991, 767, 575 ]}
+                    id = ${q(node).property('_identifier')}
+                }
+            }
+            grid {
+                condition = true
+                renderer = TdsOnepager.Site:Resource.Picture.Renderer {
+                    node = ${props.node}
+                    ratio = ${10 / 3}
+                    mobileRatio = ${10 / 6}
+                    media = ${[ 1200, 992, 768, 576 ]}
+                    width = ${[ 1110, 930, 690, 530 ]}
+                }
+            }
+        }
+    }
 
     renderer = Neos.Fusion:Case {
         grid {
-            condition = ${props.imgWidth == 'grid'}
+            condition = ${props.width == 'grid'}
             renderer = TdsOnepager.Site:Resource.Section {
 
                 noLink = true
 
-                className = ${"imageSection " + props.colors}
+                className = ${"image-section " + props.colors}
                 animation = ${props.animation}
-                content = ${props.picture}
+                content = ${image}
             }
         }
         full {
             condition = true
             renderer = afx`
-                <section id={id} class="imageSection">
-                    {props.picture}
+                <section id={id} class="image-section">
+                    {image}
                 </section>
             `
         }

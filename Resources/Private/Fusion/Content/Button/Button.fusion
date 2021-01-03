@@ -1,0 +1,13 @@
+prototype(TdsOnepager.Site:Content.Button) < prototype(Neos.Neos:ContentComponent) {
+
+    inFrontend = ${!node.context.inBackend}
+
+    buttonLabel = Neos.Neos:Editable {
+        property = "buttonLabel"
+        block = false
+    }
+    buttonPosition = ${q(node).property('buttonPosition')}
+    buttonLink = ${q(node).property('buttonLink')}
+
+    renderer = TdsOnepager.Site:Content.Button.Renderer
+}

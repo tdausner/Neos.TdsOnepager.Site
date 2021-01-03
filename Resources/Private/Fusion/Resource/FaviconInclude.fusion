@@ -1,0 +1,18 @@
+prototype(TdsOnepager.Site:Resource.FaviconInclude) < prototype(Neos.Fusion:Component) {
+    path = ''
+    inBackend = true
+
+    @if.showInBackend = ${site.context.inBackend == false || this.inBackend == true}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'link'
+        attributes {
+            href = Neos.Fusion:ResourceUri {
+                path = ${props.path}
+            }
+            rel = 'icon'
+            type = ${props.iconType}
+            size = ${props.iconSize}
+        }
+    }
+}

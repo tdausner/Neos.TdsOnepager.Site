@@ -1,0 +1,11 @@
+privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'TdsOnepager.Site:NodeRender':
+      matcher: 'method(TdsOnepager\Site\Controller\NodeRenderController->(.*)Action())'
+
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'TdsOnepager.Site:NodeRender'
+        permission: GRANT

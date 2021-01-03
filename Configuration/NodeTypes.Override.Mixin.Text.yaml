@@ -8,6 +8,10 @@
         inlineEditable: true
         inline:
           editorOptions:
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
             formatting:
               strong: true
               em: false
@@ -18,7 +22,11 @@
               h2: false
               h3: false
               pre: false
-              removeFormat: false
+              removeFormat: true
+              left: true
+              right: true
+              center: true
+              justify: true
               table: false
               a: true
               ol: true
