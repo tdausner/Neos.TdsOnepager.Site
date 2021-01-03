@@ -1,6 +1,6 @@
 {
     "packages": {
-        "tdausner/neos-tdsonepager.siteme": {
+        "tdausner/neos.tdsonepager.site": {
             "dev-master": { @composer.json }
         }
     }

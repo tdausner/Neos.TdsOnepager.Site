@@ -1,15 +1,16 @@
 {
     "description": "A one-pager site for NEOS",
     "type": "neos-site",
-    "name": "TdsOnepager.Site",
+    "name": "tdausner/tdsonepager.site",
     "require": {
         "neos/flow": "*",
         "neos/nodetypes": "*",
-        "shel/neos-colorpicker": "*"
+        "shel/neos-colorpicker": "*",
+        "jonnitto/prettyembedvideo": "^3.0"
     },
     "autoload": {
         "psr-4": {
-            "TdsOnepager\\Site\\": "Classes"
+            "TdsOnepager.Site": "Classes"
         }
     },
     "extra": {
