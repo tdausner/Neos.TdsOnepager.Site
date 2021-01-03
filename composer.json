@@ -1,7 +1,7 @@
 {
-    "description": "",
+    "description": "A one-pager site for NEOS",
     "type": "neos-site",
-    "name": "tdsonepager.site",
+    "name": "TdsOnepager.Site",
     "require": {
         "neos/flow": "*",
         "neos/nodetypes": "*",
