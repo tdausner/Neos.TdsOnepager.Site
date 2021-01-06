@@ -77,7 +77,7 @@ prototype(TdsOnepager.Site:Content.ImageTextBlock.Renderer) < prototype(Neos.Fus
                                             ratio = ${0}
                                             mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : (3 / 2)}
                                             media = ${[ 1200, 992, 768, 576 ]}
-                                            width = ${[ 1110, 930, 690, 530 ]}
+                                            width = ${[ 1110, 930, 690, 545 ]}
                                         }
                                     }
                                     imgElse {
@@ -87,7 +87,7 @@ prototype(TdsOnepager.Site:Content.ImageTextBlock.Renderer) < prototype(Neos.Fus
                                             ratio = ${props.image.orientation == 'portrait' ? 0 : (3 / 2)}
                                             mobileRatio = ${props.image.orientation == 'portrait' ? 1.0 : (3 / 2)}
                                             media = ${[ 1200, 992, 768, 576 ]}
-                                            width = ${[  540, 450, 330, 510 ]}
+                                            width = ${[  540, 450, 330, 545 ]}
                                         }
                                     }
                                 }

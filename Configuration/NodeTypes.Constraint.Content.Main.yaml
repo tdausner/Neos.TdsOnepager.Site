@@ -3,13 +3,14 @@
   constraints:
     nodeTypes:
       '*': false
-      'TdsOnepager.Site:Mixins.Animation': true
-
+      'TdsOnepager.Site:Content.BlogSection': true
+      'TdsOnepager.Site:Content.Citation': true
+      'TdsOnepager.Site:Content.Headline': true
       'TdsOnepager.Site:Content.ImageSection': true
       'TdsOnepager.Site:Content.ImageTextBlock': true
-      'TdsOnepager.Site:Content.Citation': true
+      'TdsOnepager.Site:Content.TeaserSection': true
       'TdsOnepager.Site:Content.TextBlock': true
       'TdsOnepager.Site:Content.Text': true
-      'TdsOnepager.Site:Content.Headline': true
+      'TdsOnepager.Site:Content.Video': true
 
       'TdsOnepager.Site:Content.BlogEntry': false

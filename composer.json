@@ -5,12 +5,11 @@
     "require": {
         "neos/flow": "*",
         "neos/nodetypes": "*",
-        "shel/neos-colorpicker": "*",
-        "jonnitto/prettyembedvideo": "^3.0"
+        "shel/neos-colorpicker": "*"
     },
     "autoload": {
         "psr-4": {
-            "TdsOnepager.Site": "Classes"
+            "TdsOnepager\\Site\\": "Classes"
         }
     },
     "extra": {

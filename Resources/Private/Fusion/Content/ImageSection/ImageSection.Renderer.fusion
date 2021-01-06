@@ -21,7 +21,7 @@ prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusio
                     ratio = ${10 / 3}
                     mobileRatio = ${10 / 6}
                     media = ${[ 1200, 992, 768, 576 ]}
-                    width = ${[ 1110, 930, 690, 530 ]}
+                    width = ${[ 1110, 930, 690, 545 ]}
                 }
             }
         }
@@ -36,6 +36,7 @@ prototype(TdsOnepager.Site:Content.ImageSection.Renderer) < prototype(Neos.Fusio
 
                 className = ${"image-section " + props.colors}
                 animation = ${props.animation}
+                padding = ${props.padding}
                 content = ${image}
             }
         }

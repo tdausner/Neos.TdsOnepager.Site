@@ -14,6 +14,7 @@ prototype(TdsOnepager.Site:Content.Citation.Renderer) < prototype(Neos.Fusion:Re
 
         className = ${"citation citation--" + props.citationStyle + " " + props.colors}
         animation = ${props.animation}
+        padding = ${props.padding}
 
         content = Neos.Fusion:Array {
 
