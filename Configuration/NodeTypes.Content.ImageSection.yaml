@@ -19,6 +19,29 @@
         inspector:
           group: 'image'
           position: 50
+          editorOptions:
+            features:
+              crop: true
+              upload: true
+              mediaBrowser: true
+              resize: false
+            crop:
+              aspectRatio:
+                options:
+                  square: ~
+                  fourFive: ~
+                  fiveSeven: ~
+                  twoThree: ~
+                  fourThree: ~
+                  sixteenNine: ~
+                  fourOne:
+                    width: 4
+                    height: 1
+                    label: 'Volle Breite 4:1'
+                  threeTwo:
+                    width: 3
+                    height: 2
+                    label: 'Im Grid 3:2'
 
     width:
       type: string

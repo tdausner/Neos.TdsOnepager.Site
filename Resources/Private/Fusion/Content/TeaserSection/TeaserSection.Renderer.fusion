@@ -4,6 +4,7 @@ prototype(TdsOnepager.Site:Content.TeaserSection.Renderer) < prototype(Neos.Fusi
 
     renderer = TdsOnepager.Site:Resource.Section {
         noRow = true
+        padding = ${props.padding}
         className = ${"teaser-section " + props.colors}
         #animation = ${props.animation} --- is done in TdsOnepager.Site:Content.TeaserBox.Renderer
         content = Neos.Fusion:Array {

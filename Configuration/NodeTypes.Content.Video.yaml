@@ -1,0 +1,62 @@
+'TdsOnepager.Site:Content.Video':
+  superTypes:
+    'Neos.Neos:Content': true
+    'TdsOnepager.Site:Mixins.ColorStyle': true
+    'TdsOnepager.Site:Mixins.Padding': true
+    'TdsOnepager.Site:Mixins.Animation': true
+    'Neos.NodeTypes.BaseMixins:TextMixin': true
+
+  ui:
+    label: Video
+    icon: video
+    position: 65
+    group: general
+
+  properties:
+    video:
+      type: Neos\Media\Domain\Model\Asset
+      ui:
+        label: Video-Datei
+        reloadIfChanged: true
+        inspector:
+          group: preferences
+          position: 100
+          editorOptions:
+            constraints:
+              mediaTypes: ['video/mp4','video/webm']
+              assetSources: ['neos']
+
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: Vorschaubild
+        reloadIfChanged: TRUE
+        inspector:
+          group: preferences
+          position: 110
+          editorOptions:
+            features:
+              crop: true
+              upload: true
+              mediaBrowser: true
+              resize: false
+            crop:
+              aspectRatio:
+                options:
+                  square: ~
+                  fourFive: ~
+                  fiveSeven: ~
+                  twoThree: ~
+                  fourThree: ~
+                  sixteenNine:
+                    width: 16
+                    height: 9
+                    label: 'Video 16:9'
+
+    title:
+      type: string
+      ui:
+        inline:
+          editorOptions:
+            placeholder: 'Video-Titel eingeben'
+            autoparagraph: true

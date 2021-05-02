@@ -24,7 +24,7 @@
 
         $('.noscript')
             .removeClass('noscript');
-        headerHeight = parseInt(headerFixed.getBoundingClientRect().height);
+        headerHeight = headerFixed.getBoundingClientRect().height;
         let id = win.location.search.split('id=')[1];
         if (id && id.length > 0)
         {
@@ -86,7 +86,7 @@
             /*
              * header shrinking
              */
-            headerHeight = parseInt(headerFixed.getBoundingClientRect().height);
+            headerHeight = headerFixed.getBoundingClientRect().height;
             headerHeightMax = headerHeight > headerHeightMax ? headerHeight : headerHeightMax;
             headerHeightMin = headerHeight < headerHeightMin ? headerHeight : headerHeightMin;
 
@@ -136,7 +136,7 @@
             // get all headline's position sorted ASC
             let headlines = [];
             $('.headline h1').parents('section').each(function (idx) {
-                let y = parseInt(this.getBoundingClientRect().top);
+                let y = this.getBoundingClientRect().top;
                 headlines[idx] = {
                     el: this,
                     id: $('h1', this).attr('id'),
@@ -380,7 +380,7 @@
                         {
                             $(json.teasers[idx]).insertBefore($pNode);
                         }
-                        if (typeof json.moreLink != "undefined")
+                        if (typeof json.moreLink !== "undefined")
                         {
                             $a.prop('href', json.moreLink)
                         }
@@ -395,3 +395,23 @@
 
     });
 }(jQuery, window));
+
+/**
+ * TdsOnepager.Video
+ */
+let TdsOnepager = {
+    Video: {
+        play: function (playButton) {
+            let controls = playButton.closest('.video__controls');
+            controls.classList.add('video__controls--hide');
+            let video = controls.closest('section').querySelector('video');
+            video.onended = (event) => {
+                controls.classList.remove('video__controls--hide');
+            };
+            if (video.paused)
+            {
+                video.play();
+            }
+        }
+   }
+};

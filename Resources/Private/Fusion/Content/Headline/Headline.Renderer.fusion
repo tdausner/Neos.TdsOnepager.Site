@@ -5,6 +5,7 @@ prototype(TdsOnepager.Site:Content.Headline.Renderer) < prototype(Neos.Fusion:Re
         noID = true
         className = ${"headline " + props.colors}
         animation = ${props.animation}
+        padding = ${props.padding}
 
         content = Neos.Fusion:Tag {
 

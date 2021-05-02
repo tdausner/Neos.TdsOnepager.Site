@@ -8,7 +8,7 @@ prototype(TdsOnepager.Site:Content.BlogTeaser.Renderer) < prototype(Neos.Fusion:
             ratio = ${3 / 2}
             mobileRatio = ${3 / 2}
             media = ${[ 1200, 992, 768, 576 ]}
-            width = ${[  350, 290, 210, 510 ]}
+            width = ${[  350, 290, 210, 545 ]}
         }
     }
     renderer = Neos.Fusion:Case {

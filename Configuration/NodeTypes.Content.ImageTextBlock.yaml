@@ -5,7 +5,6 @@
   superTypes:
     'Neos.Neos:Content': true
     'TdsOnepager.Site:Mixins.ColorStyle': true
-#    'TdsOnepager.Site:Mixins.ImageOrientation': true
     'TdsOnepager.Site:Mixins.ImageScaling': true
     'Neos.NodeTypes.BaseMixins:TextMixin': true
     'TdsOnepager.Site:Mixins.Padding': true
@@ -27,6 +26,29 @@
         inspector:
           group: preferences
           position: 1
+          editorOptions:
+            features:
+              crop: true
+              upload: true
+              mediaBrowser: true
+              resize: false
+            crop:
+              aspectRatio:
+                options:
+                  square: ~
+                  fourFive: ~
+                  fiveSeven: ~
+                  twoThree: ~
+                  fourThree: ~
+                  sixteenNine: ~
+                  oneOne:
+                    width: 1
+                    height: 1
+                    label: 'Hochkant 1:1'
+                  threeTwo:
+                    width: 3
+                    height: 2
+                    label: 'Quer 3:2'
 
     headline:
       type: string

@@ -31,6 +31,7 @@ prototype(TdsOnepager.Site:Content.TextBlock.Renderer) < prototype(Neos.Fusion:R
 
         className = ${"text-block text-block__author--" + props.authorPosition + " " + props.colors}
         animation = ${props.animation}
+        padding = ${props.padding}
 
         content = Neos.Fusion:Array {
 

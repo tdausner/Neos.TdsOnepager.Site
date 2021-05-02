@@ -9,7 +9,7 @@ prototype(TdsOnepager.Site:Content.TeaserBox.Renderer) < prototype(Neos.Fusion:R
             ratio = ${3 / 2}
             mobileRatio = ${3 / 2}
             media = ${[ 1200, 992, 768, 576 ]}
-            width = ${[  350, 290, 210, 510 ]}
+            width = ${[  350, 290, 210, 545 ]}
         }
     }
 

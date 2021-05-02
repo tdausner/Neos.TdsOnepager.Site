@@ -1,0 +1,46 @@
+prototype(TdsOnepager.Site:Content.Video) < prototype(Neos.Neos:ContentComponent) {
+
+    colors = ${q(node).property('colors')}
+    animation = ${q(node).property('animation')}
+    padding = ${q(node).property('padding')}
+    video = Neos.Fusion:ResourceUri {
+        resource = ${q(node).property('video').resource}
+    }
+    stillImage = TdsOnepager.Site:Resource.Picture.Renderer {
+        node = ${props.node}
+        ratio = ${16 / 9}
+        mobileRatio = ${16 / 9}
+        media = ${[ 1200, 992, 768, 576 ]}
+        width = ${[ 1110, 930, 690, 530 ]}
+    }
+    title = Neos.Neos:Editable {
+        property = 'title'
+    }
+
+    renderer = TdsOnepager.Site:Resource.Section {
+
+        className = ${"video-section " + props.colors}
+        animation = ${props.animation}
+        padding = ${props.padding}
+        content = afx`
+            <div class="col-12">
+                <div class="video__container">
+                    <video controls>
+                        <source src={props.video} type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video__controls">
+                    <div class="video__still-image">
+                        {props.stillImage}
+                    </div>
+                    <div class="video__controls--play" onClick="TdsOnepager.Video.play(this);">
+                        <div class="video__controls--play-triangle"></div>
+                    </div>
+                    <div class="video__controls--title" @if.title={props.title}>
+                        {props.title}
+                    </div>
+                </div>
+            </div>
+        `
+    }
+}
